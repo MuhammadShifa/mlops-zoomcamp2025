@@ -86,4 +86,62 @@ Key components:
 
 ---
 
+---
+
+### 🚦 1.4 - MLOps Maturity Model
+
+Understanding where an organization stands in its MLOps journey is essential for planning scalable and reliable ML systems. This section follows the **MLOps Maturity Model** as defined by Microsoft.
+
+📖 Reference:  
+🔗 [Machine Learning Operations (MLOps) Maturity Model – Microsoft Docs](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/mlops-maturity-model)
+
+The model is divided into **four levels** based on how mature and automated the ML lifecycle is within an organization.
+
+---
+
+#### 🔹 Level 0 - No MLOps
+
+- Manual experimentation and deployment.
+- Not reproducible or versioned.
+- No collaboration between teams.
+- Risk of model drift and lack of monitoring.
+
+🖼️ ![Level 0 - No MLOps](images/mlops_level0.png)
+
+---
+
+#### 🔹 Level 1 - DevOps Practices for ML
+
+- Version control for code and data.
+- Manual CI/CD pipelines begin to form.
+- Data scientists and engineers start to collaborate.
+- Still some manual steps in training and deployment.
+
+🖼️ ![Level 1 - DevOps for ML](images/mlops_level1.png)
+
+---
+
+#### 🔹 Level 2 - Automated ML Pipeline
+
+- Automated training, validation, and deployment.
+- CI/CD pipelines trigger on data/code changes.
+- Model registry introduced for versioning.
+- Monitoring and feedback loops begin to form.
+
+🖼️ ![Level 2 - Automated ML Pipeline](images/mlops_level2.png)
+
+---
+
+#### 🔹 Level 3 - CI/CD and CT for ML
+
+- Full automation of ML lifecycle (CI/CD/CT).
+- Continuous Training (CT) pipelines triggered by data drift.
+- Governance, auditing, and explainability built in.
+- Real-time monitoring and alerts.
+
+🖼️ ![Level 3 - CI/CD and CT](images/mlops_level3.png)
+
+---
+
+📁 All screenshots are stored in the `images/` folder.
 
