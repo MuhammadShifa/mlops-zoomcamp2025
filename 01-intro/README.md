@@ -9,13 +9,9 @@
 - A combination of **tools, practices, and processes** that help teams reliably and efficiently deploy and maintain machine learning models in production.
 - It enables moving from experimentation to deployment **without losing reproducibility, reliability, and scalability**.
 
----
-
 ### 🚴 Use Case: Duration of Ride Prediction Problem
 
 A common ML problem used to illustrate MLOps is predicting the **duration of a rider’s trip** based on data like pickup/dropoff time and location.
-
----
 
 ### ⚙️ Key Stages in ML Workflow
 
@@ -23,18 +19,16 @@ The typical lifecycle of a machine learning project can be broken down into thre
 
 Design ---> Train ---> Operate
 
-
 - **Design**: Understanding the business problem, data exploration, feature selection, model architecture design.
 - **Train**: Training and evaluating models, tuning hyperparameters, validating performance.
 - **Operate**: Deploying models to production, monitoring, retraining, and maintaining them.
 
----
+🖼️ <img src="images/mlops_pipeline.png" alt="ML Workflow" width="600"/>
+
 
 ### 🌐 Model Deployment
 
 - ML models are usually deployed as **web services**, often via RESTful **APIs**, allowing other applications to interact with them in real time.
-
----
 
 ### 🛠️ Role of MLOps
 
@@ -62,11 +56,12 @@ Set up the MLOps Zoomcamp development environment using **GitHub Codespaces**, *
 
 This is the first practical assignment of the course. The goal is to build a baseline machine learning model to predict the **duration of taxi rides** in NYC.
 
+🖼️ <img src="images/ride_duration_problem.png" alt="Duration of Ride Prediction" width="600"/>
+
 📁 **Notebook**:  
 All the development code is available in the `notebooks/` folder.  
 - 📘 [Duration Prediction](notebooks/duration_prediction.ipynb)  
 - 🏠 [Homework Week 1](notebooks/Homework_week1.ipynb)
-
 
 📁 **Data**:  
 Input datasets are stored in the `data/` folder.  
@@ -86,9 +81,7 @@ Key components:
 
 ---
 
----
-
-### 🚦 1.4 - MLOps Maturity Model
+## 🚦 1.4 - MLOps Maturity Model
 
 Understanding where an organization stands in its MLOps journey is essential for planning scalable and reliable ML systems. This section follows the **MLOps Maturity Model** as defined by Microsoft.
 
@@ -97,51 +90,44 @@ Understanding where an organization stands in its MLOps journey is essential for
 
 The model is divided into **four levels** based on how mature and automated the ML lifecycle is within an organization.
 
----
+🖼️ <img src="images/mlops_maturity_models.png" alt="MLOps Maturity Model" width="600"/>
 
-#### 🔹 Level 0 - No MLOps
+
+### 🔹 Level 0 - No MLOps
 
 - Manual experimentation and deployment.
 - Not reproducible or versioned.
 - No collaboration between teams.
 - Risk of model drift and lack of monitoring.
 
-🖼️ ![Level 0 - No MLOps](images/mlops_level0.png)
+🖼️ <img src="images/mlops_level0.png" alt="Level 0 - No MLOps" width="600"/>
 
----
-
-#### 🔹 Level 1 - DevOps Practices for ML
+### 🔹 Level 1 - DevOps Practices for ML
 
 - Version control for code and data.
 - Manual CI/CD pipelines begin to form.
 - Data scientists and engineers start to collaborate.
 - Still some manual steps in training and deployment.
 
-🖼️ ![Level 1 - DevOps for ML](images/mlops_level1.png)
+🖼️ <img src="images/mlops_level1.png" alt="Level 1 - DevOps for ML" width="600"/>
 
----
-
-#### 🔹 Level 2 - Automated ML Pipeline
+### 🔹 Level 2 - Automated ML Pipeline
 
 - Automated training, validation, and deployment.
 - CI/CD pipelines trigger on data/code changes.
 - Model registry introduced for versioning.
 - Monitoring and feedback loops begin to form.
 
-🖼️ ![Level 2 - Automated ML Pipeline](images/mlops_level2.png)
+🖼️ <img src="images/mlops_level2.png" alt="Level 2 - Automated ML Pipeline" width="600"/>
 
----
-
-#### 🔹 Level 3 - CI/CD and CT for ML
+### 🔹 Level 3 - CI/CD and CT for ML
 
 - Full automation of ML lifecycle (CI/CD/CT).
 - Continuous Training (CT) pipelines triggered by data drift.
 - Governance, auditing, and explainability built in.
 - Real-time monitoring and alerts.
 
-🖼️ ![Level 3 - CI/CD and CT](images/mlops_level3.png)
+🖼️ <img src="images/mlops_level3.png" alt="Level 3 - CI/CD and CT" width="600"/>
 
 ---
-
-📁 All screenshots are stored in the `images/` folder.
 
