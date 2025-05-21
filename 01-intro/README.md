@@ -88,7 +88,7 @@ Understanding where an organization stands in its MLOps journey is essential for
 📖 Reference:  
 🔗 [Machine Learning Operations (MLOps) Maturity Model – Microsoft Docs](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/mlops-maturity-model)
 
-The model is divided into **four levels** based on how mature and automated the ML lifecycle is within an organization.
+The model is divided into **Five levels** based on how mature and automated the ML lifecycle is within an organization.
 
 🖼️ <img src="images/mlops_maturity_models.png" alt="MLOps Maturity Model" width="600"/>
 
@@ -96,36 +96,48 @@ The model is divided into **four levels** based on how mature and automated the 
 ### 🔹 Level 0 - No MLOps
 
 - Manual experimentation and deployment.
-- Not reproducible or versioned.
-- No collaboration between teams.
+- Not reproducible results.
+- No collaboration between teams(data and software engineer).
 - Risk of model drift and lack of monitoring.
 
 🖼️ <img src="images/mlops_level0.png" alt="Level 0 - No MLOps" width="600"/>
 
-### 🔹 Level 1 - DevOps Practices for ML
+### 🔹 Level 1 - DevOps but NO MLOps
 
-- Version control for code and data.
+- Model releases are less painful than No MLOps but rely on data team
 - Manual CI/CD pipelines begin to form.
 - Data scientists and engineers start to collaborate.
 - Still some manual steps in training and deployment.
 
 🖼️ <img src="images/mlops_level1.png" alt="Level 1 - DevOps for ML" width="600"/>
 
-### 🔹 Level 2 - Automated ML Pipeline
+### 🔹 Level 2 - Automated Training
 
-- Automated training, validation, and deployment.
+- Automated training environment and fully traceable
 - CI/CD pipelines trigger on data/code changes.
 - Model registry introduced for versioning.
-- Monitoring and feedback loops begin to form.
+- Centralized system for model tracking perfomance
+- Release are manual but low fiction deployment
 
 🖼️ <img src="images/mlops_level2.png" alt="Level 2 - Automated ML Pipeline" width="600"/>
 
-### 🔹 Level 3 - CI/CD and CT for ML
+### 🔹 Level 3 Automated Model Deployment
 
-- Full automation of ML lifecycle (CI/CD/CT).
+- Releases are low fiction and automatic
+- Full traceability from deployment to orginal data
+- full environemtn managed train, test, deployment automatically
+- Integrated A/B testing and model tracking perofmance
+- Monitoring and feedback loops begin to form.
+
+### 🔹 Level 4 - Full MLOps Automated Operations
+
+- Full automation of ML lifecycle and Monitoring.
 - Continuous Training (CT) pipelines triggered by data drift.
 - Governance, auditing, and explainability built in.
 - Real-time monitoring and alerts.
+- Production system auto-improved or help in suggestion to improve.
+- Centralized system from deployed model
+- Approaching a zero down-time system
 
 🖼️ <img src="images/mlops_level3.png" alt="Level 3 - CI/CD and CT" width="600"/>
 
