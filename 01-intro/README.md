@@ -128,6 +128,9 @@ The model is divided into **Five levels** based on how mature and automated the 
 - full environemtn managed train, test, deployment automatically
 - Integrated A/B testing and model tracking perofmance
 - Monitoring and feedback loops begin to form.
+  
+🖼️ <img src="images/mlops_level3.png" alt="Level 3 - CI/CD and CT" width="600"/>
+
 
 ### 🔹 Level 4 - Full MLOps Automated Operations
 
@@ -138,8 +141,6 @@ The model is divided into **Five levels** based on how mature and automated the 
 - Production system auto-improved or help in suggestion to improve.
 - Centralized system from deployed model
 - Approaching a zero down-time system
-
-🖼️ <img src="images/mlops_level3.png" alt="Level 3 - CI/CD and CT" width="600"/>
 
 ---
 
