@@ -58,19 +58,22 @@ This is the first practical assignment of the course. The goal is to build a bas
 
 🖼️ <img src="images/ride_duration_problem.png" alt="Duration of Ride Prediction" width="600"/>
 
-📁 **Notebook**:  
+📁 [**Notebooks:**](notebooks/) 
+
 All the development code is available in the `notebooks/` folder.  
 - 📘 [Duration Prediction](notebooks/duration_prediction.ipynb)  
 - 🏠 [Homework Week 1](notebooks/Homework_week1.ipynb)
 
-📁 **Data**:  
+📁 [**Data:**](data/) 
+
 Input datasets are stored in the `data/` folder.  
 The original dataset can be downloaded from the official NYC TLC website:  
 🔗 [NYC Taxi Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 
-📁 **Model**:  
+📁 [**Models:**](models)  
+
 Trained models are saved in the `models/` folder.  
-The first baseline model is trained using Scikit-Learn.
+The first baseline models are trained using Scikit-Learn.
 
 Key components:
 - Data reading and preprocessing using **Pandas**
