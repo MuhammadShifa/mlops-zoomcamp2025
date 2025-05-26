@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/503567252173762315/1c5a383e03c14a229a7936b10edc9332/artifacts
+deleted_time: 1748263663238
+end_time: null
+entry_point_name: ''
+experiment_id: '503567252173762315'
+lifecycle_stage: deleted
+run_id: 1c5a383e03c14a229a7936b10edc9332
+run_name: hilarious-pig-880
+run_uuid: 1c5a383e03c14a229a7936b10edc9332
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748263537522
+status: 1
+tags: []
+user_id: codespace
