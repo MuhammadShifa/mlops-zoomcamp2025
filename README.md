@@ -36,10 +36,14 @@ To get the most out of this course, it is recommended that you have prior experi
   
 ---
 
-### Module 2: [Module 2 Title Here]
-
-*(Add your summary here when available, plus link)*
-
+### [Module 2: Experiment Tracking & Model Management](02-experiment-tracking)
+Introduction to MLFlow 
+MLflow basics
+Experiment tracking
+Autologging in MLFLow
+Model saving and loading
+Model registry
+Hands-on MLflow exercises
 ---
 
 ## 🚀 How to Use This Repository
