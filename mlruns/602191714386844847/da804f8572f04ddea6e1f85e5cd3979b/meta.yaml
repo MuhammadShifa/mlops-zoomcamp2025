@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/da804f8572f04ddea6e1f85e5cd3979b/artifacts
+end_time: 1748269335006
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: da804f8572f04ddea6e1f85e5cd3979b
+run_name: useful-snail-615
+run_uuid: da804f8572f04ddea6e1f85e5cd3979b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748269284560
+status: 3
+tags: []
+user_id: mshifa

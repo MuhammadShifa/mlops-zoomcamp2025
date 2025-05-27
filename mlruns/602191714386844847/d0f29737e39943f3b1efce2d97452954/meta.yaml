@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/d0f29737e39943f3b1efce2d97452954/artifacts
+deleted_time: 1748285078051
+end_time: 1748284728177
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: deleted
+run_id: d0f29737e39943f3b1efce2d97452954
+run_name: exultant-carp-153
+run_uuid: d0f29737e39943f3b1efce2d97452954
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748284720359
+status: 4
+tags: []
+user_id: mshifa

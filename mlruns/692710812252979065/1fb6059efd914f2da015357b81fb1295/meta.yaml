@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/1fb6059efd914f2da015357b81fb1295/artifacts
+end_time: 1748334108910
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 1fb6059efd914f2da015357b81fb1295
+run_name: respected-pug-585
+run_uuid: 1fb6059efd914f2da015357b81fb1295
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748334076352
+status: 3
+tags: []
+user_id: mshifa

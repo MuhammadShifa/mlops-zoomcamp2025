@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/824ff34ef02143c6b8dc12db02e709dd/artifacts
+end_time: 1748269649050
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 824ff34ef02143c6b8dc12db02e709dd
+run_name: delicate-carp-807
+run_uuid: 824ff34ef02143c6b8dc12db02e709dd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748269589899
+status: 3
+tags: []
+user_id: mshifa

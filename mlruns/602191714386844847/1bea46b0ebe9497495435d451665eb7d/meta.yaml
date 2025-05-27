@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/1bea46b0ebe9497495435d451665eb7d/artifacts
+deleted_time: 1748285077968
+end_time: 1748284571153
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: deleted
+run_id: 1bea46b0ebe9497495435d451665eb7d
+run_name: adorable-yak-829
+run_uuid: 1bea46b0ebe9497495435d451665eb7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748284570899
+status: 4
+tags: []
+user_id: mshifa

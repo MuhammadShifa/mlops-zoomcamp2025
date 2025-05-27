@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/339995047927440088/6d26f912b3df43dabca9d77cf00ff06a/artifacts
+end_time: 1748329567967
+entry_point_name: ''
+experiment_id: '339995047927440088'
+lifecycle_stage: active
+run_id: 6d26f912b3df43dabca9d77cf00ff06a
+run_name: debonair-lynx-464
+run_uuid: 6d26f912b3df43dabca9d77cf00ff06a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748328439569
+status: 4
+tags: []
+user_id: mshifa

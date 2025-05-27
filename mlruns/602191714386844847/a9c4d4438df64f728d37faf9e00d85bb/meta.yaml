@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/a9c4d4438df64f728d37faf9e00d85bb/artifacts
+deleted_time: 1748285078056
+end_time: 1748285022401
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: deleted
+run_id: a9c4d4438df64f728d37faf9e00d85bb
+run_name: bustling-fly-800
+run_uuid: a9c4d4438df64f728d37faf9e00d85bb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748285015624
+status: 4
+tags: []
+user_id: mshifa

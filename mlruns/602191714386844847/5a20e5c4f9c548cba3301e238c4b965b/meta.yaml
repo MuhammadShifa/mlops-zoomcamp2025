@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/5a20e5c4f9c548cba3301e238c4b965b/artifacts
+end_time: 1748269942306
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 5a20e5c4f9c548cba3301e238c4b965b
+run_name: stylish-steed-772
+run_uuid: 5a20e5c4f9c548cba3301e238c4b965b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748269897960
+status: 3
+tags: []
+user_id: mshifa

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/cb6f93481f9147929f3286b033c6cb42/artifacts
+deleted_time: 1748334567723
+end_time: 1748330527396
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: deleted
+run_id: cb6f93481f9147929f3286b033c6cb42
+run_name: fun-seal-956
+run_uuid: cb6f93481f9147929f3286b033c6cb42
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748329846037
+status: 4
+tags: []
+user_id: mshifa

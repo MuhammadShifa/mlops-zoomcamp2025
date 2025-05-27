@@ -1,0 +1,27 @@
+artifact_path: model
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.9.0
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.core.Booster
+    model_format: xgb
+    xgb_version: 1.7.6
+is_signature_from_type_hint: false
+mlflow_version: 2.22.0
+model_size_bytes: 1082998
+model_uuid: 43def74812c94a8c8289426def26ad62
+prompts: null
+run_id: d0fe3bc7e47345d391b0ee15c7b92536
+signature:
+  inputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1, 13221]}}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float32", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-05-26 18:05:14.895931'

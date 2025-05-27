@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/1b0560a5504d4260b8bede03ea1afb9c/artifacts
+end_time: 1748268856969
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 1b0560a5504d4260b8bede03ea1afb9c
+run_name: nimble-donkey-7
+run_uuid: 1b0560a5504d4260b8bede03ea1afb9c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748268780341
+status: 3
+tags: []
+user_id: mshifa

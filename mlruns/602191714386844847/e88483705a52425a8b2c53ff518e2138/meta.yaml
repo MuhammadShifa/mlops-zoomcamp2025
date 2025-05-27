@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/e88483705a52425a8b2c53ff518e2138/artifacts
+deleted_time: 1748285078050
+end_time: 1748284919125
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: deleted
+run_id: e88483705a52425a8b2c53ff518e2138
+run_name: luminous-stork-84
+run_uuid: e88483705a52425a8b2c53ff518e2138
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748284909143
+status: 4
+tags: []
+user_id: mshifa

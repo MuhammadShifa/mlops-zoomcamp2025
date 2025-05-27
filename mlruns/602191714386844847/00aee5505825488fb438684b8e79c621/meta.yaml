@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/00aee5505825488fb438684b8e79c621/artifacts
+end_time: 1748268578704
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 00aee5505825488fb438684b8e79c621
+run_name: overjoyed-ram-888
+run_uuid: 00aee5505825488fb438684b8e79c621
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748268537203
+status: 3
+tags: []
+user_id: mshifa

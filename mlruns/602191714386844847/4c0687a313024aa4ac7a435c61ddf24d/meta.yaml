@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/4c0687a313024aa4ac7a435c61ddf24d/artifacts
+end_time: 1748269091713
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 4c0687a313024aa4ac7a435c61ddf24d
+run_name: legendary-worm-725
+run_uuid: 4c0687a313024aa4ac7a435c61ddf24d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748269038668
+status: 3
+tags: []
+user_id: mshifa

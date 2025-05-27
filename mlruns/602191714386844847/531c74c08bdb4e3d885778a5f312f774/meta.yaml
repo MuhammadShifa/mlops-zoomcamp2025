@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/531c74c08bdb4e3d885778a5f312f774/artifacts
+deleted_time: 1748278544535
+end_time: null
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: deleted
+run_id: 531c74c08bdb4e3d885778a5f312f774
+run_name: charming-swan-778
+run_uuid: 531c74c08bdb4e3d885778a5f312f774
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748276314189
+status: 1
+tags: []
+user_id: mshifa

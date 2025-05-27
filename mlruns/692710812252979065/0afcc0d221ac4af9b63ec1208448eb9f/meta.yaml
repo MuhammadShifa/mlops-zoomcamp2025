@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/0afcc0d221ac4af9b63ec1208448eb9f/artifacts
+end_time: 1748334926594
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 0afcc0d221ac4af9b63ec1208448eb9f
+run_name: mercurial-ray-343
+run_uuid: 0afcc0d221ac4af9b63ec1208448eb9f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748334163478
+status: 3
+tags: []
+user_id: mshifa

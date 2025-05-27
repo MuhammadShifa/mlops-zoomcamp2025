@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/a1ac4db2604e4b7a8da93dd5b59ae5ba/artifacts
+end_time: 1748285069278
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: a1ac4db2604e4b7a8da93dd5b59ae5ba
+run_name: fun-gull-366
+run_uuid: a1ac4db2604e4b7a8da93dd5b59ae5ba
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748285053732
+status: 3
+tags: []
+user_id: mshifa

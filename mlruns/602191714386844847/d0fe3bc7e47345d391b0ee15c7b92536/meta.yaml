@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/d0fe3bc7e47345d391b0ee15c7b92536/artifacts
+end_time: 1748282731638
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: d0fe3bc7e47345d391b0ee15c7b92536
+run_name: colorful-koi-248
+run_uuid: d0fe3bc7e47345d391b0ee15c7b92536
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748281782225
+status: 3
+tags: []
+user_id: mshifa

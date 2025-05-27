@@ -1,0 +1,9 @@
+digest: 0f5f0969
+name: validation
+profile: '{"features_shape": [61921, 13221], "features_size": 818657541, "features_nbytes":
+  3274630164}'
+schema: '{"mlflow_tensorspec": {"features": "[{\"type\": \"tensor\", \"tensor-spec\":
+  {\"dtype\": \"float32\", \"shape\": [-1, 13221]}}]", "targets": null}}'
+source: '{"tags": {"mlflow.user": "mshifa", "mlflow.source.name": "/home/mshifa/Downloads/ye/envs/main/lib/python3.9/site-packages/ipykernel_launcher.py",
+  "mlflow.source.type": "LOCAL"}}'
+source_type: code

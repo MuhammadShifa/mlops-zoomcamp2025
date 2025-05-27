@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/620a996886af4a9caeb9eb7ce9276dc6/artifacts
+end_time: 1748268028046
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 620a996886af4a9caeb9eb7ce9276dc6
+run_name: brawny-gnat-796
+run_uuid: 620a996886af4a9caeb9eb7ce9276dc6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748267987978
+status: 3
+tags: []
+user_id: mshifa

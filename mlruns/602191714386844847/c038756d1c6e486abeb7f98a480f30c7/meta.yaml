@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/c038756d1c6e486abeb7f98a480f30c7/artifacts
+end_time: 1748268212697
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: c038756d1c6e486abeb7f98a480f30c7
+run_name: clumsy-pig-842
+run_uuid: c038756d1c6e486abeb7f98a480f30c7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748268157532
+status: 3
+tags: []
+user_id: mshifa

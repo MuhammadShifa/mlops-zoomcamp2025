@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/62ea6bf75966440d86e37b232ffe5135/artifacts
+end_time: 1748268276538
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 62ea6bf75966440d86e37b232ffe5135
+run_name: treasured-whale-224
+run_uuid: 62ea6bf75966440d86e37b232ffe5135
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748268250267
+status: 3
+tags: []
+user_id: mshifa

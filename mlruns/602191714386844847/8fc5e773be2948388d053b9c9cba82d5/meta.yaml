@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/8fc5e773be2948388d053b9c9cba82d5/artifacts
+end_time: 1748269821114
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 8fc5e773be2948388d053b9c9cba82d5
+run_name: legendary-toad-82
+run_uuid: 8fc5e773be2948388d053b9c9cba82d5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748269702312
+status: 3
+tags: []
+user_id: mshifa

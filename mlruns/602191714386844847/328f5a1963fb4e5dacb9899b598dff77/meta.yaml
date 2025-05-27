@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/602191714386844847/328f5a1963fb4e5dacb9899b598dff77/artifacts
+end_time: 1748280439092
+entry_point_name: ''
+experiment_id: '602191714386844847'
+lifecycle_stage: active
+run_id: 328f5a1963fb4e5dacb9899b598dff77
+run_name: treasured-fowl-711
+run_uuid: 328f5a1963fb4e5dacb9899b598dff77
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748279718233
+status: 3
+tags: []
+user_id: mshifa

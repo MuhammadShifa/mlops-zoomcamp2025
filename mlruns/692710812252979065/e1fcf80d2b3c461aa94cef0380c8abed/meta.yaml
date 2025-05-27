@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/e1fcf80d2b3c461aa94cef0380c8abed/artifacts
+end_time: 1748335231961
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: e1fcf80d2b3c461aa94cef0380c8abed
+run_name: omniscient-roo-529
+run_uuid: e1fcf80d2b3c461aa94cef0380c8abed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748334926625
+status: 3
+tags: []
+user_id: mshifa
