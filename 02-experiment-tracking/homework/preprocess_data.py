@@ -14,7 +14,7 @@ def dump_pickle(obj, filename: str):
 def read_dataframe(filename: str):
     df = pd.read_parquet(filename)
 
-    df['duration'] = df['tpep_dropoff_datetime'] - df['tpep_pickup_datetime']
+    df['duration'] = df['lpep_dropoff_datetime'] - df['lpep_pickup_datetime']
     df.duration = df.duration.apply(lambda td: td.total_seconds() / 60)
     df = df[(df.duration >= 1) & (df.duration <= 60)]
 
@@ -45,7 +45,7 @@ def preprocess(df: pd.DataFrame, dv: DictVectorizer, fit_dv: bool = False):
     "--dest_path",
     help="Location where the resulting files will be saved"
 )
-def run_data_prep(raw_data_path: str, dest_path: str, dataset: str = "yellow"):
+def run_data_prep(raw_data_path: str, dest_path: str, dataset: str = "green"):
     # Load parquet files
     df_train = read_dataframe(
         os.path.join(raw_data_path, f"{dataset}_tripdata_2023-01.parquet")
