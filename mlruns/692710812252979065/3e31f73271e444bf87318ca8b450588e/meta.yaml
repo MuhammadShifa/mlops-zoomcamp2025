@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/3e31f73271e444bf87318ca8b450588e/artifacts
+end_time: 1748359047862
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 3e31f73271e444bf87318ca8b450588e
+run_name: flawless-panda-37
+run_uuid: 3e31f73271e444bf87318ca8b450588e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748359041626
+status: 3
+tags: []
+user_id: mshifa

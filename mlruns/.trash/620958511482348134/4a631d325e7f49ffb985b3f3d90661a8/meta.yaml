@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/620958511482348134/4a631d325e7f49ffb985b3f3d90661a8/artifacts
+deleted_time: 1748358836077
+end_time: 1748357428528
+entry_point_name: ''
+experiment_id: '620958511482348134'
+lifecycle_stage: deleted
+run_id: 4a631d325e7f49ffb985b3f3d90661a8
+run_name: traveling-toad-711
+run_uuid: 4a631d325e7f49ffb985b3f3d90661a8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748357332876
+status: 3
+tags: []
+user_id: mshifa

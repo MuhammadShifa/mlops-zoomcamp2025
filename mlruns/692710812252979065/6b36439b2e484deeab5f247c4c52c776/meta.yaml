@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/6b36439b2e484deeab5f247c4c52c776/artifacts
+end_time: 1748359060919
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 6b36439b2e484deeab5f247c4c52c776
+run_name: bald-perch-456
+run_uuid: 6b36439b2e484deeab5f247c4c52c776
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748359051632
+status: 3
+tags: []
+user_id: mshifa

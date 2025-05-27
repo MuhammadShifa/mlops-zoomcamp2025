@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/52ad47f718404772819d10adcaa211e5/artifacts
+end_time: 1748358929890
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 52ad47f718404772819d10adcaa211e5
+run_name: colorful-donkey-963
+run_uuid: 52ad47f718404772819d10adcaa211e5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748358920100
+status: 3
+tags: []
+user_id: mshifa

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/822f6ce8a154474a9913063a72a901a1/artifacts
+end_time: 1748359051574
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 822f6ce8a154474a9913063a72a901a1
+run_name: polite-cub-46
+run_uuid: 822f6ce8a154474a9913063a72a901a1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748359048043
+status: 3
+tags: []
+user_id: mshifa

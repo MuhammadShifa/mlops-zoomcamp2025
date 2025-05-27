@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/280f086275654184ae3224e72afb5329/artifacts
+end_time: 1748358918705
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: 280f086275654184ae3224e72afb5329
+run_name: glamorous-crow-384
+run_uuid: 280f086275654184ae3224e72afb5329
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748358917806
+status: 3
+tags: []
+user_id: mshifa

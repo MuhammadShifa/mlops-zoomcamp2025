@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/aaa81171817d4f93add1a1d84f5b0c9d/artifacts
+end_time: 1748358959303
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: aaa81171817d4f93add1a1d84f5b0c9d
+run_name: loud-panda-389
+run_uuid: aaa81171817d4f93add1a1d84f5b0c9d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748358935025
+status: 3
+tags: []
+user_id: mshifa

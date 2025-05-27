@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/339995047927440088/6d26f912b3df43dabca9d77cf00ff06a/artifacts
+deleted_time: 1748358855236
 end_time: 1748329567967
 entry_point_name: ''
 experiment_id: '339995047927440088'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 6d26f912b3df43dabca9d77cf00ff06a
 run_name: debonair-lynx-464
 run_uuid: 6d26f912b3df43dabca9d77cf00ff06a

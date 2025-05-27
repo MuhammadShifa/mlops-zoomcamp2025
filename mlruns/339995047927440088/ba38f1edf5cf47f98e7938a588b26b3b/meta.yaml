@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/339995047927440088/ba38f1edf5cf47f98e7938a588b26b3b/artifacts
+end_time: 1748360353327
+entry_point_name: ''
+experiment_id: '339995047927440088'
+lifecycle_stage: active
+run_id: ba38f1edf5cf47f98e7938a588b26b3b
+run_name: judicious-bug-535
+run_uuid: ba38f1edf5cf47f98e7938a588b26b3b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748360309993
+status: 3
+tags: []
+user_id: mshifa

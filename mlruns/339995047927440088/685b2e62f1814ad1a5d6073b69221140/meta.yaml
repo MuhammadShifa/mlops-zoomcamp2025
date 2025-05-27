@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/339995047927440088/685b2e62f1814ad1a5d6073b69221140/artifacts
+end_time: 1748358775264
+entry_point_name: ''
+experiment_id: '339995047927440088'
+lifecycle_stage: active
+run_id: 685b2e62f1814ad1a5d6073b69221140
+run_name: zealous-slug-434
+run_uuid: 685b2e62f1814ad1a5d6073b69221140
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748358699598
+status: 3
+tags: []
+user_id: mshifa

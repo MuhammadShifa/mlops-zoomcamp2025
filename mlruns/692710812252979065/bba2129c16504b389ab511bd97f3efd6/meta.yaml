@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/692710812252979065/bba2129c16504b389ab511bd97f3efd6/artifacts
+end_time: 1748358934657
+entry_point_name: ''
+experiment_id: '692710812252979065'
+lifecycle_stage: active
+run_id: bba2129c16504b389ab511bd97f3efd6
+run_name: calm-crab-340
+run_uuid: bba2129c16504b389ab511bd97f3efd6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748358929929
+status: 3
+tags: []
+user_id: mshifa

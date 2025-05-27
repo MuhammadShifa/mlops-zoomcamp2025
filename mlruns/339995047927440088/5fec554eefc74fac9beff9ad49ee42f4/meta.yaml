@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/339995047927440088/5fec554eefc74fac9beff9ad49ee42f4/artifacts
+end_time: 1748360309608
+entry_point_name: ''
+experiment_id: '339995047927440088'
+lifecycle_stage: active
+run_id: 5fec554eefc74fac9beff9ad49ee42f4
+run_name: bouncy-goose-203
+run_uuid: 5fec554eefc74fac9beff9ad49ee42f4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748359906288
+status: 3
+tags: []
+user_id: mshifa
