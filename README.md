@@ -37,14 +37,25 @@ To get the most out of this course, it is recommended that you have prior experi
 ---
 
 ### [Module 2: Experiment Tracking & Model Management](02-experiment-tracking)
-Introduction to MLFlow 
-MLflow basics
-Experiment tracking
-Autologging in MLFLow
-Model saving and loading
-Model registry
-Hands-on MLflow exercises
+
+- Introduction to MLFlow 
+- MLflow basics
+- Experiment tracking
+- Autologging in MLFLow
+- Model saving and loading
+- Model registry
+- Hands-on MLflow exercises
 ---
+
+### [Module 3: Orchestration & ML Pipelines](./03-orchestration)
+
+This module introduced workflow orchestration tools and how to build production-ready ML pipelines.
+
+**Key Topics Covered:**
+- Workflow orchestration
+- Built and managed pipelines using Prefect
+- Homework completed
+
 
 ## 🚀 How to Use This Repository
 
