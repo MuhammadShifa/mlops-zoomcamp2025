@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/496409895171607791/89faac8237814b5a9c06e82cbfb96a22/artifacts
+deleted_time: 1750832572603
+end_time: 1750831073398
+entry_point_name: ''
+experiment_id: '496409895171607791'
+lifecycle_stage: deleted
+run_id: 89faac8237814b5a9c06e82cbfb96a22
+run_name: wistful-penguin-552
+run_uuid: 89faac8237814b5a9c06e82cbfb96a22
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750830965663
+status: 3
+tags: []
+user_id: mshifa

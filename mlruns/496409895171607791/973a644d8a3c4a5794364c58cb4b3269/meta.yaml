@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/496409895171607791/973a644d8a3c4a5794364c58cb4b3269/artifacts
+deleted_time: 1750832292065
+end_time: null
+entry_point_name: ''
+experiment_id: '496409895171607791'
+lifecycle_stage: deleted
+run_id: 973a644d8a3c4a5794364c58cb4b3269
+run_name: painted-dove-575
+run_uuid: 973a644d8a3c4a5794364c58cb4b3269
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750832050683
+status: 1
+tags: []
+user_id: mshifa

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/496409895171607791/c7cc36a3dfce4f9dacce8af7e9c950bc/artifacts
+end_time: 1750832671527
+entry_point_name: ''
+experiment_id: '496409895171607791'
+lifecycle_stage: active
+run_id: c7cc36a3dfce4f9dacce8af7e9c950bc
+run_name: caring-skink-610
+run_uuid: c7cc36a3dfce4f9dacce8af7e9c950bc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750832618737
+status: 3
+tags: []
+user_id: mshifa
