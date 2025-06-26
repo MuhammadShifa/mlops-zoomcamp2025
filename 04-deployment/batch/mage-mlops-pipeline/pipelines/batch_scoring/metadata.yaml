@@ -1,0 +1,6 @@
+created_at: '2025-06-26 12:41:42.300536+00:00'
+description: This is batch score pipeline
+name: batch_scoring
+tags: []
+type: python
+uuid: batch_scoring
