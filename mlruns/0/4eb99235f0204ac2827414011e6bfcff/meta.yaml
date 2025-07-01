@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/4eb99235f0204ac2827414011e6bfcff/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4eb99235f0204ac2827414011e6bfcff
+run_name: enthused-skunk-523
+run_uuid: 4eb99235f0204ac2827414011e6bfcff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751383611306
+status: 1
+tags: []
+user_id: mshifa

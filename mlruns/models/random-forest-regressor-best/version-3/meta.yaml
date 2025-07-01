@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1751381942301
+current_stage: Production
+description: The model version 3 was transitioned to Staging on 2025-07-01
+last_updated_timestamp: 1751385119835
+name: random-forest-regressor-best
+run_id: d2744aa915da45d581d06660ef7d6ec8
+run_link: ''
+source: mlflow-artifacts:/339995047927440088/d2744aa915da45d581d06660ef7d6ec8/artifacts/model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/339995047927440088/d2744aa915da45d581d06660ef7d6ec8/artifacts/model
+user_id: null
+version: 3
