@@ -8,10 +8,11 @@ from flask import Flask, request, jsonify
 # MLFLOW_TRACKING_URI = 'http://127.0.0.1:5000'
 # mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
-RUN_ID = 'f12de8218f6d4711a2902c7d4581aac2'
-
+# RUN_ID = 'f12de8218f6d4711a2902c7d4581aac2'
+RUN_ID = '55b250328b3343f0a08b8a97a15707bf' # Aws remote mlflow run_id, s3
 # if server is down, directly point to the location locally s3 etc.
-logged_model = f'/home/mshifa/workspace/zoomcamp/repo_clone/mlops-zoomcamp2025/mlartifacts/496409895171607791/{RUN_ID}/artifacts/model'
+logged_model = f"s3://mlartifact-s3/1/{RUN_ID}/artifacts/model"
+# logged_model = f'/home/mshifa/workspace/zoomcamp/repo_clone/mlops-zoomcamp2025/mlartifacts/496409895171607791/{RUN_ID}/artifacts/model'
 # logged_model = f'runs:/{RUN_ID}/model' # if mlflow tracking server is available
 model = mlflow.pyfunc.load_model(logged_model)
 
