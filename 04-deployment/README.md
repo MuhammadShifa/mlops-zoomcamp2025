@@ -13,7 +13,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
         1. Web service
         2. Streaming
 
-### [Batch (Offline) Deployment](./batch)
+### 1. [Batch (Offline) Deployment](./batch)
 - A batch mode "scores" data based on a pre-trained model on a regular interval (e.g. hourly, daily, monthly)
 - This is used for use cases where the activities it supports are not happening in real time but can be batched
 - It **pulls data from a database**, scores it, and generates predictions.
@@ -26,7 +26,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - Customer churn analysis
   - Scheduled reporting
 
-### [Online Deployment (Web Service)](./web-service)
+### 2a. [Online Deployment (Web Service)](./web-service)
 - The duration prediction we've been exploring is a perfect use case for a prediction that can be returned by making a call to a "Ride Duration Prediction Service"
 - This relationship produces a 1:1 relationship between the client ```(BackendService)``` and the server ```(DurationPredictionService)```  to process the client requests.
 - The model is deployed as a **web service** that runs continuously to handle real-time requests.
@@ -37,7 +37,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - **Flask**: Handles routing and prediction logic.
   - **Gunicorn**: Runs multiple Flask worker processes to handle concurrent requests efficiently.
 
-### [Streaming Deployment](./streaming)
+### 2b. [Streaming Deployment](./streaming)
 - Involves a **producer-consumer architecture** where data continuously flows through the system.
 - In the streaming use case, the concept builds on web service by decoupling the client from the server and establishing a many:many relationship between ```Producers``` and ```Consumers```
 - Producers create events, and consumers have to react to these events. Usually it's a one-to-many or a many-to-many relationship between producers and consumers.
@@ -47,8 +47,8 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - if a ride starts, then a ride duration predictor will keep updating, there's also a tip predictor.
   - Real-time fraud detection
   - Event-driven predictions
-    
-A seperate README.md is provided for streaming [here](./streaming/README.md)
+A seperate detailed README.md is provided for streaming [here](./streaming/README.md) in streaming.
+
 ---
 ## [Deploying model as a web-service](web-service)
 #### Steps
