@@ -47,6 +47,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - if a ride starts, then a ride duration predictor will keep updating, there's also a tip predictor.
   - Real-time fraud detection
   - Event-driven predictions
+    
 A seperate README.md is provided for streaming [here](./streaming/README.md)
 ---
 ## [Deploying model as a web-service](web-service)
