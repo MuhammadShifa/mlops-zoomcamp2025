@@ -1,4 +1,3 @@
-# Deployment
 # MLOps Zoomcamp — Deployments Module
 
 This README summarizes the Deployments module of the MLOps Zoomcamp. It explains different deployment strategies, how web services function, and how to serve models using MLflow.
@@ -6,7 +5,7 @@ This README summarizes the Deployments module of the MLOps Zoomcamp. It explains
 ### Quick recap:
 
 We've learned how to rewrite our training into a workflow. Now we'll study how to deploy the resulting model.
-## 🚀 Model Deployment Strategies
+## Model Deployment Strategies
 
 - There are primarily two kinds of deployments:
     1. Batch (offline) - runs regularly
@@ -14,7 +13,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
         1. Web service
         2. Streaming
 
-### 1️⃣ Batch (Offline) Deployment
+### [Batch (Offline) Deployment](./batch)
 - A batch mode "scores" data based on a pre-trained model on a regular interval (e.g. hourly, daily, monthly)
 - This is used for use cases where the activities it supports are not happening in real time but can be batched
 - It **pulls data from a database**, scores it, and generates predictions.
@@ -27,7 +26,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - Customer churn analysis
   - Scheduled reporting
 
-### 2️⃣ Online Deployment (Web Service)
+### [Online Deployment (Web Service)](./web-service)
 - The duration prediction we've been exploring is a perfect use case for a prediction that can be returned by making a call to a "Ride Duration Prediction Service"
 - This relationship produces a 1:1 relationship between the client ```(BackendService)``` and the server ```(DurationPredictionService)```  to process the client requests.
 - The model is deployed as a **web service** that runs continuously to handle real-time requests.
@@ -38,12 +37,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - **Flask**: Handles routing and prediction logic.
   - **Gunicorn**: Runs multiple Flask worker processes to handle concurrent requests efficiently.
 
-#### ⚙️ How Flask and Gunicorn Work
-- **Flask** is a lightweight Python web framework that defines routes and handles incoming HTTP requests for predictions.
-- **Gunicorn** is a production-grade WSGI server that runs multiple worker processes to handle requests in parallel.
-- Together they provide a scalable and efficient web service: `Client Request → Gunicorn → Flask App → Model Inference → Response`
-
-### 3️⃣ [Streaming Deployment](./streaming)
+### [Streaming Deployment](./streaming)
 - Involves a **producer-consumer architecture** where data continuously flows through the system.
 - In the streaming use case, the concept builds on web service by decoupling the client from the server and establishing a many:many relationship between ```Producers``` and ```Consumers```
 - Producers create events, and consumers have to react to these events. Usually it's a one-to-many or a many-to-many relationship between producers and consumers.
@@ -53,7 +47,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - if a ride starts, then a ride duration predictor will keep updating, there's also a tip predictor.
   - Real-time fraud detection
   - Event-driven predictions
-
+A seperate README.md is provided for streaming [here](./streaming/README.md)
 ---
 ## [Deploying model as a web-service](web-service)
 #### Steps
@@ -89,7 +83,7 @@ pipenv shell
 
 First we create a script that loads the saved model, preprocesses the input data and generates prediction.
 
-[Predict script without flask](./web-service/normal_predict.py)
+[Predict script without flask](./web-service/normal_predict.py)\
 [Test script to test predict script](./web-service/normal_test.py)
 
 The idea is to create a working script that can take input in original format and generate the prediction result.
@@ -126,7 +120,7 @@ This will deploy the webserive on localhost and we can run the test.py script ag
 The model was directly used from the local path, in next step we will load the model from Mlflow model registry.
 
 
-## 🌟 [Serving Models with MLflow](./web-service-mlflow)
+## [Serving Models with MLflow](./web-service-mlflow)
 - Models are trained and registered in the **MLflow Model Registry**.
 - We can load the model directly from the registry or from a local path or S3 location.
 - Typical process:
@@ -139,4 +133,5 @@ The model was directly used from the local path, in next step we will load the m
 - **What if the MLflow server is down?**
   - If the server is down, web services depending on it will fail to load the model.
   - A common mitigation is to load the model from a **local file system** or a **cloud storage location (e.g., S3)** to ensure continued service availability.
+
 
