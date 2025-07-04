@@ -43,7 +43,7 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
 - **Gunicorn** is a production-grade WSGI server that runs multiple worker processes to handle requests in parallel.
 - Together they provide a scalable and efficient web service: `Client Request → Gunicorn → Flask App → Model Inference → Response`
 
-### 3️⃣ [Streaming Deployment](./Streaming)
+### 3️⃣ [Streaming Deployment](./streaming)
 - Involves a **producer-consumer architecture** where data continuously flows through the system.
 - In the streaming use case, the concept builds on web service by decoupling the client from the server and establishing a many:many relationship between ```Producers``` and ```Consumers```
 - Producers create events, and consumers have to react to these events. Usually it's a one-to-many or a many-to-many relationship between producers and consumers.
@@ -55,10 +55,80 @@ We've learned how to rewrite our training into a workflow. Now we'll study how t
   - Event-driven predictions
 
 ---
+## [Deploying model as a web-service](web-service)
+#### Steps
 
-## 🌟 Serving Models with MLflow
+- Save the trained model
+- Create a virtual environment
+- Create a script for prediction
+- Put the script into a Flask app
+- Package the app to Docker image
+
+#### Save the trained model
+Here we are taking the same model, saved as a binary file, that was trained in previous model and put that in newly created web-service directory for this week.
+
+#### Create a virtual environment
+We need to have exact same version of Scikit-learn library that was used to create the model as well as same Python version in order to avoid any compatibility issue.
+
+Go to the virtual environment in EC2 server or local conda envrironment where the model was trained and run the following command.
+```bash
+pip freeze | grep scikit-learn
+python --version
+```
+
+With pipenv create a new virtual environment.
+```bash
+pipenv install scikit-learn==1.0.2 flask --python=3.9
+```
+Activate the environment.
+```bash
+pipenv shell
+```
+
+#### Create a script for prediction
+
+First we create a script that loads the saved model, preprocesses the input data and generates prediction.
+
+[Predict script without flask](./web-service/normal_predict.py)
+[Test script to test predict script](./web-service/normal_test.py)
+
+The idea is to create a working script that can take input in original format and generate the prediction result.
+
+#### Put the script into a Flask app
+
+Note: Rename the files from predict_without_flask.py to predict.py and test_without_flask.py to test.py and make a flask application from these files.
+Now that we have the working predict.py script ready, we can build a web-service around it so that we can expose it to an HTTP endpoint.
+
+Note: Current flask set up is for the development environment. Install gunicorn and configure in order to solve the following production environment type warning.
+```bash
+pipenv install gunicorn
+gunicorn --bind=0.0.0.0:9696 predict:app
+```
+```
+* Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+```
+Note: our Flask application is ready to dockerized
+
+
+#### Package the app to Docker
+- Create Dockerfile with necessary content.
+- Run the following command to build docker image
+```bash
+docker build -t ride-duration-prediction-service:v1 .
+```
+- Run the following command to run the image
+```
+docker run -it --rm -p 9696:9696 ride-duration-prediction-service:v1
+```
+This will deploy the webserive on localhost and we can run the test.py script again to test.
+The model was directly used from the local path, in next step we will load the model from Mlflow model registry.
+
+
+## 🌟 [Serving Models with MLflow](./web-service-mlflow)
 - Models are trained and registered in the **MLflow Model Registry**.
-- We can load the model directly from the registry or from a local path / S3 location.
+- We can load the model directly from the registry or from a local path or S3 location.
 - Typical process:
   1. Train the model and log it to MLflow.
   2. Download the model (and preprocessor if needed, e.g., `dv`).
