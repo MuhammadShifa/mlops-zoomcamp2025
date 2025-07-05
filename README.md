@@ -33,7 +33,7 @@ To get the most out of this course, it is recommended that you have prior experi
 - NYC Taxi dataset (our running example)  
 - Why MLOps is essential  
 - Course structure & environment setup
-  
+- homework solution
 ---
 
 ### [Module 2: Experiment Tracking & Model Management](02-experiment-tracking)
@@ -45,6 +45,7 @@ To get the most out of this course, it is recommended that you have prior experi
 - Model saving and loading
 - Model registry
 - Hands-on MLflow exercises
+- Homework solution
 ---
 
 ### [Module 3: Orchestration & ML Pipelines](./03-orchestration)
@@ -54,13 +55,28 @@ This module introduced workflow orchestration tools and how to build production-
 **Key Topics Covered:**
 - Workflow orchestration
 - Built and managed pipelines using Prefect
-- Homework completed
+- Homework solution
+---
 
-----
+### [Module 4: Model Deployment](./04-deployment)
+- Deployment strategies: online (web, streaming) vs. offline (batch)
+- Deploying with Flask (web service)
+- Streaming deployment with AWS Kinesis & Lambda
+- Batch scoring for offline processing
+- Homework solution
+---
+
+### [Module 5: Model Monitoring](./05-monitoring)
+
+- Monitoring ML-based services
+- Web service monitoring
+- Batch job monitoring
+- Homework Solution
+---
 
 ## 🚀 How to Use This Repository
 
-- Each module folder contains notebooks, datasets, and supporting files for that week's assignments and projects.  
+- Each module folder contains notebooks, datasets, and supporting files for that week's homework.  
 - The root-level README will be updated as the course progresses to keep an overview of your learning journey.  
 - Use GitHub issues or discussions (if enabled) for any questions or collaboration.  
 
