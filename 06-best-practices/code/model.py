@@ -5,14 +5,25 @@ import base64
 
 import mlflow
 
+def get_model_location(run_id):
+    model_location = os.getenv('MODEL_LOCATION')
 
+    if model_location is not None:
+        return model_location
+
+    model_bucket = os.getenv('MODEL_BUCKET', 'mlartifact-s3')
+    experiment_id = os.getenv('MLFLOW_EXPERIMENT_ID', '1')
+
+    model_location = f's3://{model_bucket}/{experiment_id}/{run_id}/artifacts/model'
+    return model_location
+    
+    
 def load_mode(run_id):
-    # S3 path
-    logged_model = f"s3://mlartifact-s3/1/{run_id}/artifacts/model"
+    
     # local path
     # logged_model = f"/home/mshifa/workspace/zoomcamp/repo_clone/mlops-zoomcamp2025/mlartifacts/496409895171607791/{run_id}/artifacts/model"
-    # logged_model = f'runs:/{RUN_ID}/model'
-    model = mlflow.pyfunc.load_model(logged_model)
+    model_path = get_model_location(run_id)
+    model = mlflow.pyfunc.load_model(model_path)
     
     return model
 
@@ -112,6 +123,10 @@ def init(prediction_stream_name: str, run_id: str, test_run: bool):
         callbacks.append(kinesis_callback.put_record)
         
     
-    model_service = ModelService(model)
+    model_service = ModelService(
+        model= model,
+        model_version=run_id,
+        callbacks= callbacks
+        )
     
     return model_service
