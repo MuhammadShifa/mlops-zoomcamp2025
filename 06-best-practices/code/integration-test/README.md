@@ -92,6 +92,7 @@ docker build -t stream-model-duration:v2 .
 
 ### Reference:
 - [Bash Shebange](https://linuxize.com/post/bash-shebang/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ## 🧠 Summary
 
