@@ -12,6 +12,9 @@ mlflow = "==2.22.0"
 [dev-packages]
 pytest = "*"
 deepdiff = "*"
+pylint = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.9"

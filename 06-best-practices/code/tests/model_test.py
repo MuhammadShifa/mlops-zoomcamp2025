@@ -1,8 +1,15 @@
+from pathlib import Path
+
 import model
 
+def read_text(file):
+    test_directory = Path(__file__).parent
+
+    with open(test_directory / file, 'rt', encoding='utf-8') as f_in:
+        return f_in.read().strip()
 
 def test_base64_decode():
-    input_base64 = "ewogICAgICAgICJyaWRlIjogewogICAgICAgICAgICAiUFVMb2NhdGlvbklEIjogMTMwLAogICAgICAgICAgICAiRE9Mb2NhdGlvbklEIjogMjA1LAogICAgICAgICAgICAidHJpcF9kaXN0YW5jZSI6IDMuNjYKICAgICAgICB9LCAKICAgICAgICAicmlkZV9pZCI6IDI1NgogICAgfQ=="
+    input_base64 = read_text('data.b64')
     actual_results = model.base64_decode(input_base64)
     
     expected_results = {
@@ -52,7 +59,7 @@ def test_predict():
     # Creates a ModelService instance and gives it the fake model (model_mock) to use.
     # Now, any prediction made through model_service will use that mock.
     
-    model_service = model.ModelService(model_mock) # we don't want the actually model tbe use from s3, test should be independent as possible
+    model_service = model.ModelService(model_mock)
     features = {
         "PU_DO": "130_205",
         "trip_distance": 3.66,
@@ -67,18 +74,22 @@ def test_predict():
 def test_lambda_handler():
     model_mock = ModelMock(10.0)
     model_version = 'Test123'
+    input_base64 = read_text('data.b64')
+
     
     event = {
         "Records": [
             {
             "kinesis": {
-                "data": "ewogICAgICAgICJyaWRlIjogewogICAgICAgICAgICAiUFVMb2NhdGlvbklEIjogMTMwLAogICAgICAgICAgICAiRE9Mb2NhdGlvbklEIjogMjA1LAogICAgICAgICAgICAidHJpcF9kaXN0YW5jZSI6IDMuNjYKICAgICAgICB9LCAKICAgICAgICAicmlkZV9pZCI6IDI1NgogICAgfQ==",
-                },
+                "data": input_base64
+                    },
             }]
         }
 
-    model_service = model.ModelService(model_mock, model_version= model_version) # we don't want the actually model tbe use from s3, test should be independent as possible
-    
+    model_service = model.ModelService(
+        model=model_mock,
+        model_version= model_version
+        )
 
     actual_prediction = model_service.lambda_handler(event)
     expected_predictions = {
