@@ -1,6 +1,6 @@
-# 🧪 Unit Testing and Dockerizing the Streaming Module
+## 🧪 Unit Testing and Dockerizing the Streaming Module
 
-## 📚 Overview
+### 📚 Overview
 
 This README explains the process of:
 
@@ -13,7 +13,7 @@ The unit testing work is based on the [**streaming**](../04-deployment/streaming
 
 ---
 
-## 🧱 Project Structure
+### 🧱 Project Structure
 
 ```bash
 .
@@ -30,11 +30,11 @@ The unit testing work is based on the [**streaming**](../04-deployment/streaming
 
 ---
 
-## ✅ What is Unit Testing?
+### ✅ What is Unit Testing?
 
 Unit testing is the process of testing **individual pieces of code (units)** like functions or classes to make sure they behave as expected.
 
-### 🔍 Why do we unit test?
+#### 🔍 Why do we unit test?
 
 - To catch bugs early
 - To make code modular and independent
@@ -43,7 +43,7 @@ Unit testing is the process of testing **individual pieces of code (units)** lik
 
 ---
 
-## 🧪 Writing a Simple Unit Test
+### 🧪 Writing a Simple Unit Test
 
 
 Let’s say we have the following model serivce class required model in `model.py`
@@ -70,7 +70,7 @@ class ModelMock():
         return [self.value] * n
 ```
 
-### ✅ A simple unit test:
+#### ✅ A simple unit test:
 
 ```python
 from model import ModelService
@@ -93,7 +93,7 @@ def test_predict():
     
 ```
 
-### 🔍 Explanation:
+#### 🔍 Explanation:
 
 - We use a **mock model** that always returns `10.0`
 - This isolates the `ModelService` and avoids dependencies on real ML models
@@ -101,7 +101,7 @@ def test_predict():
 
 ---
 
-## 🧪 Running the Tests
+### 🧪 Running the Tests
 
 Make sure you have `pytest` installed:
 
@@ -116,17 +116,17 @@ pipenv run pytest test
 
 ---
 
-## 🐳 Dockerizing the Updated Code
+### 🐳 Dockerizing the Updated Code
 
 Once you’ve tested and debugged your code, you can containerize it for deployment.
 
-### ✅ Build Docker Image
+#### ✅ Build Docker Image
 
 ```bash
 docker build -t stream-model-duration:v2 .
 ```
 
-### ✅ Run Docker Container
+#### ✅ Run Docker Container
 
 ```bash
 docker run -it --rm \
@@ -142,7 +142,7 @@ docker run -it --rm \
 
 ---
 
-## 🧠 Key Learnings
+### 🧠 Key Learnings
 
 - Unit testing helps isolate and validate parts of your code
 - Mocking makes testing easier by replacing real models or APIs
@@ -151,7 +151,7 @@ docker run -it --rm \
 
 ---
 
-## 📌 Best Practices for Unit Testing in MLOps
+### 📌 Best Practices for Unit Testing in MLOps
 
 | Practice            | Benefit                                 |
 |---------------------|------------------------------------------|
@@ -163,7 +163,7 @@ docker run -it --rm \
 
 ---
 
-## 🛠 Tools Used
+### 🛠 Tools Used
 
 - `pytest` for unit testing
 - `Docker` for containerization
@@ -171,5 +171,20 @@ docker run -it --rm \
 
 ---
 
+## 🔗 Integration Testing
+
+In addition to unit testing, we implemented **integration testing** to validate the end-to-end functionality of the streaming service inside Docker containers.
+
+Key steps include:
+
+- Downloading the trained model from S3
+- Refactoring the code to load the model locally
+- Mounting the model into the container at runtime
+- Running the service and validating predictions through tests
+- Automating the entire process with a shell script
+
+📁 You can find the detailed steps and commands in the [integration-test/README.md](integration-test/README.md).
+
+---
 
 Happy Testing & Shipping! 🚀
