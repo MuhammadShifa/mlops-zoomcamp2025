@@ -90,6 +90,9 @@ docker build -t stream-model-duration:v2 .
 
 ---
 
+### Reference:
+- [Bash Shebange](https://linuxize.com/post/bash-shebang/)
+
 ## 🧠 Summary
 
 This integration test ensures our full streaming service works end-to-end inside a container, independent of external cloud services, and is reproducible locally with Docker.
