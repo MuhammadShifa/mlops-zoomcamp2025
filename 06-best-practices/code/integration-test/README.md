@@ -19,7 +19,7 @@ integration-test/
 ## ✅ Steps Performed
 
 1. 📂 **Created `integration-test` Directory**  
-   A new folder `integration-test` was created, and the `test_docker_test.py` file was added using the same code from the unit testing module.
+   A new folder `integration-test` was created, and the `test_docker.py` file was added using the same code from the unit testing module.
 
 2. ☁️ **Downloaded Model from S3**  
    To avoid runtime dependency on S3, we downloaded the model manually with:
