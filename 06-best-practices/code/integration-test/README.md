@@ -93,6 +93,7 @@ This integration test ensures our full streaming service works end-to-end inside
 
 ---
 
+
 ## 🔁 Integration Test with Kinesis (Testing Cloud Services with LocalStack)
 
 In the earlier integration test, we validated the model and container behavior but **did not test the Kinesis part**. This section focuses on testing **AWS Kinesis integration using LocalStack**, a local AWS cloud emulator.
@@ -275,5 +276,6 @@ All components — model, environment variables, container, and Kinesis — are 
 ### Reference:
 - [Bash Shebange](https://linuxize.com/post/bash-shebang/)
 - [Docker Compose](https://docs.docker.com/compose/)
+- [LocalStack](https://github.com/localstack/localstack?tab=readme-ov-file)
 
 
