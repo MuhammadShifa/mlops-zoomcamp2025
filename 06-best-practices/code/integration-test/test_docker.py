@@ -1,6 +1,7 @@
 # pylint: disable=duplicate-code
 
 import json
+
 import requests
 from deepdiff import DeepDiff
 
@@ -13,15 +14,20 @@ print("actual response: ")
 
 print(json.dumps(actual_response, indent=2))
 
-expected_response = {'predictions': 
-    [{'model': 'ride_duration_prediction_model',
-        'version': 'Test123', 
-        'prediction': {'ride_duration': 18.16, 
-                    'ride_id': 256
-                    }
-        }]}
+expected_response = {
+    'predictions': [
+        {
+            'model': 'ride_duration_prediction_model',
+            'version': 'Test123',
+            'prediction': {
+                'ride_duration': 18.16,
+                'ride_id': 256,
+            },
+        },
+    ]
+}
 
-diff = DeepDiff(actual_response, expected_response , significant_digits=1)
+diff = DeepDiff(actual_response, expected_response, significant_digits=1)
 print(diff)
 
 assert 'type_changes' not in diff
