@@ -198,5 +198,16 @@ We used tools like `pylint`, `black`, and `isort`, and centralized configuration
 
 🔗 [Read full guide on linting and formatting →](linting_and_formatting.md)
 
+---
+
+## 🔒 Git Pre-commit Hooks
+
+To ensure consistent code quality and prevent accidental commits with formatting or linting issues, we’ve integrated **Git pre-commit hooks** using the [`pre-commit`](https://pre-commit.com/) framework.
+
+These hooks automatically run tools like `isort`, `black`, `pylint`, and `pytest` **before every commit**, making our workflow more reliable and automated.
+
+🔗 [Read full guide on pre-commit hooks →](pre_commit_hooks.md)
+
+
 
 Happy Testing & Shipping! 🚀
