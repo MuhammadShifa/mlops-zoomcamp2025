@@ -187,4 +187,16 @@ Key steps include:
 
 ---
 
+## 🧼 Linting and Formatting
+
+To maintain clean, consistent, and production-ready Python code, we adopted best practices around **linting** and **formatting**.
+
+- **Linting** helps catch common errors and enforce code style by analyzing code statically.
+- **Formatting** tools automatically structure code to follow standardized conventions like PEP8.
+
+We used tools like `pylint`, `black`, and `isort`, and centralized configuration in `pyproject.toml` for easier project management.
+
+🔗 [Read full guide on linting and formatting →](linting_and_formatting.md)
+
+
 Happy Testing & Shipping! 🚀
