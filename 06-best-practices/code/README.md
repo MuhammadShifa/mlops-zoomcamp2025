@@ -79,7 +79,7 @@ def test_predict():
     model_mock = ModelMock(10.0)
     # Creates a ModelService instance and gives it the fake model (model_mock) to use.
     # Now, any prediction made through model_service will use that mock.
-    
+
     model_service = model.ModelService(model_mock) # we don't want the actually model tbe use from s3, test should be independent as possible
     features = {
         "PU_DO": "130_205",
@@ -90,7 +90,7 @@ def test_predict():
     expected_prediction = 10.0
 
     assert actual_prediction == expected_prediction
-    
+
 ```
 
 #### 🔍 Explanation:

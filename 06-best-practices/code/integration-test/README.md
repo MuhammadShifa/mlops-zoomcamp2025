@@ -18,10 +18,10 @@ integration-test/
 
 ## ✅ Steps Performed
 
-1. 📂 **Created `integration-test` Directory**  
+1. 📂 **Created `integration-test` Directory**
    A new folder `integration-test` was created, and the `test_docker.py` file was added using the same code from the unit testing module.
 
-2. ☁️ **Downloaded Model from S3**  
+2. ☁️ **Downloaded Model from S3**
    To avoid runtime dependency on S3, we downloaded the model manually with:
 
    ```bash
@@ -34,7 +34,7 @@ integration-test/
    ls -lh model
    ```
 
-3. 🔧 **Refactored Code to Remove S3 Dependency**  
+3. 🔧 **Refactored Code to Remove S3 Dependency**
    The service code was updated to load the model from a local path (`/app/model`) instead of fetching from S3 at runtime. This makes integration tests faster, more reliable, and independent of cloud connectivity.
 
 4. ✅ **Build Docker Image**
@@ -44,7 +44,7 @@ docker build -t stream-model-duration:v2 .
 ```
 
 5. ✅ **Run Docker Container**
-    
+
    The container was run with the model directory mounted into it:
 
    ```bash
@@ -59,7 +59,7 @@ docker build -t stream-model-duration:v2 .
      stream-model-duration:v2
    ```
 
-6. 🧪 **Run Docker Test**  
+6. 🧪 **Run Docker Test**
    We tested the running container using:
 
    ```bash
@@ -68,12 +68,12 @@ docker build -t stream-model-duration:v2 .
 
    All tests passed successfully.
 
-7. ⚙️ **Created Automation Script: `run.sh`**  
+7. ⚙️ **Created Automation Script: `run.sh`**
    To streamline the process, we created a shell script to automate:
 
-   - Docker image build  
-   - Container run via Docker Compose  
-   - Test execution  
+   - Docker image build
+   - Container run via Docker Compose
+   - Test execution
    - Clean-up
 
    Make the script executable:
@@ -179,7 +179,7 @@ aws --endpoint-url=http://localhost:4566 kinesis list-streams
 To redirect the app to LocalStack instead of AWS:
 
 - Define a new environment variable in `docker-compose.yml`:
-  
+
 ```yaml
 KINESIS_ENDPOINT_URL=http://kinesis:4566/
 ```
@@ -244,7 +244,7 @@ echo "<base64-string>" | base64 -d
 
 ### 🧪 Automating Kinesis Test
 
-We added a new file `test_kinesis.py` to automate the above steps.  
+We added a new file `test_kinesis.py` to automate the above steps.
 `run.sh` was updated to:
 
 - Build and run containers
@@ -255,13 +255,13 @@ We added a new file `test_kinesis.py` to automate the above steps.
 
 ## ✅ Summary of Testing Types
 
-1. **Unit Testing**  
+1. **Unit Testing**
    Run from `code` directory:
    ```bash
    pipenv run pytest ./tests
    ```
 
-2. **Integration Testing (Model + Kinesis + Container)**  
+2. **Integration Testing (Model + Kinesis + Container)**
    Run from project root:
    ```bash
    ./integration-test/run.sh
@@ -277,5 +277,3 @@ All components — model, environment variables, container, and Kinesis — are 
 - [Bash Shebange](https://linuxize.com/post/bash-shebang/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - [LocalStack](https://github.com/localstack/localstack?tab=readme-ov-file)
-
-

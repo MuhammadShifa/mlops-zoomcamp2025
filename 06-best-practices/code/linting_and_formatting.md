@@ -10,7 +10,7 @@ One key aspect of code quality is **linting** — the process of automatically a
 - Style violations (e.g., spacing, naming)
 - Code smells (e.g., unused imports, reassigning built-ins)
 - Potential bugs
-  
+
 There are several linters available in the Python ecosystem such as:
 - `pylint` – comprehensive static analysis and style checking
 - `flake8` – lightweight linter with plugin support

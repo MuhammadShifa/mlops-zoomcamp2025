@@ -14,7 +14,7 @@ services:
 
     volumes:
       - "./model:/app/model"
-  
+
   kinesis:
     image: localstack/localstack
     ports:
