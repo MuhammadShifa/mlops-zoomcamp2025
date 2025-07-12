@@ -1,0 +1,3 @@
+.pytest_cache/
+.__pycache__/
+integration-test/model/model.pkl
