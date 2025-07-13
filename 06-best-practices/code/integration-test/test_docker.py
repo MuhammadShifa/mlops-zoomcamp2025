@@ -1,15 +1,18 @@
 # pylint: disable=duplicate-code
 
+import os
 import json
 
 import requests
 from deepdiff import DeepDiff
 
+REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "10"))
+
 with open('event.json', 'rt', encoding='utf-8') as f_in:
     event = json.load(f_in)
 
 url = 'http://localhost:8080/2015-03-31/functions/function/invocations'
-actual_response = requests.post(url, json=event).json()
+actual_response = requests.post(url, json=event, timeout=int(REQUEST_TIMEOUT)).json()
 print("actual response: ")
 
 print(json.dumps(actual_response, indent=2))
