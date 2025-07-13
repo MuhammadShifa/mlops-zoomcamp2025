@@ -208,6 +208,23 @@ These hooks automatically run tools like `isort`, `black`, `pylint`, and `pytest
 
 🔗 [Read full guide on pre-commit hooks →](pre_commit_hooks.md)
 
+---
+## 🧱 Makefiles and `make`
+
+To automate repetitive tasks like testing, linting, building Docker images, running integration tests, and publishing, we use **Makefiles** with the `make` tool.
+
+This acts as a lightweight orchestrator for our development and deployment workflow. It ensures tasks run in the right order with a single command, helping us maintain consistency across local development and CI/CD pipelines.
+
+🛠️ With just one command, you can:
+
+- Run tests: `make test`
+- Check code quality: `make quality_checks`
+- Build Docker images: `make build`
+- Run integration tests: `make integration_test`
+- Publish models: `make publish`
+
+🔗 [Read full guide on Makefiles and `make` →](/make_and_makefiles.md)
 
 
-Happy Testing & Shipping! 🚀
+
+Happy Testing & Best-Practices!! 🚀
