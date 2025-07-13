@@ -115,20 +115,22 @@ variable "aws_region" {
 
 A reusable module for creating a Kinesis stream:
 
-**`modules/kinesis/main.tf`**
+**`infrastructure/main.tf`**
 ```hcl
-resource "aws_kinesis_stream" "ride_events" {
-  name             = var.stream_name
-  shard_count      = 1
-  retention_period = 24
+# ride_events
+module "source_kinesis_stream" {
+  source = "./modules/kinesis"
+  retention_period = 48
+  shard_count = 2
+  stream_name = "${var.source_stream_name}-${var.project_id}"
+  tags = var.project_id
 }
 ```
 
-**`modules/kinesis/variables.tf`**
+**`infrastructure/variables.tf`**
 ```hcl
-variable "stream_name" {
-  description = "Name of the Kinesis stream"
-  type        = string
+variable "source_stream_name" {
+  description = ""
 }
 ```
 
@@ -165,6 +167,61 @@ terraform apply -var="stream_name=ride-events-stg"
 After approval, the Kinesis stream `ride-events-stg` will be created.
 
 ---
+### 🚀 Destroy the resource
+```bash
+terraform destroy
+```
+This command will destroy the resource
+
+---
+
+### 🔹 Step 4: Add Kinesis Output Stream
+
+In addition to the input stream, a second **Kinesis stream** was created for publishing ride prediction events.
+
+**`infrastructure/main.tf`**
+```hcl
+# ride_predictions
+module "output_kinesis_stream" {
+  source = "./modules/kinesis"
+  retention_period = 48
+  shard_count = 2
+  stream_name = "${var.output_stream_name}-${var.project_id}"
+  tags = var.project_id
+}
+```
+
+**`infrastructure//variables.tf`**
+```hcl
+variable "output_stream_name" {
+  description = ""
+}
+```
+
+---
+
+### 🔹 Step 5: Add S3 Module for Model Storage
+
+A new Terraform module was added to manage the **S3 bucket** that stores ML model artifacts.
+
+**`infrastructure/main.tf`**
+```hcl
+module "s3_bucket" {
+  source      = "./modules/s3"
+  bucket_name = "${var.model_bucket}-${var.project_id}"
+}
+```
+
+**`infrastructure/variables.tf`**
+```hcl
+ariable "model_bucket" {
+  description = "s3_bucket"
+}
+
+```
+
+---
+
 
 ## 📌 Summary of Concepts Learned
 
@@ -179,11 +236,12 @@ After approval, the Kinesis stream `ride-events-stg` will be created.
 
 ---
 
-## 🔜 What’s Next?
+## ✅ What's Next?
 
-- Expand with Lambda, ECR, and S3 modules  
-- Wire services together for live predictions  
-- Configure CloudWatch for monitoring  
-- Deploy ML models into Lambda using Docker
+- Add and configure AWS Lambda function to run ML inference  
+- Pull the model from S3 and Docker image from ECR  
+- Stream results into the new output Kinesis stream  
+- Set up CloudWatch for monitoring and debugging  
+
 
 ---
