@@ -242,8 +242,19 @@ Terraform enables us to declaratively define infrastructure using version-contro
 
 🔗 [Read full guide on Terraform and cloud infrastructure setup →](./infrastructure/README.md)
 
+---
+
+## ⚙️ CI/CD Pipeline
+
+This project includes a fully automated **CI/CD pipeline** using **GitHub Actions**, covering:
+
+- ✅ Continuous Integration: testing, linting, and integration checks on every pull request.
+- 🚀 Continuous Deployment: automated infrastructure provisioning and model deployment on pushes to `main`.
+
+🔗 [Read full guide on CI/CD Pipeline setup →](./ci_cd_pipeline.md)
+
 
 ---
 
-Happy Testing & Best-Practices!! 🚀
+ 🚀Happy Testing & Best-Engineering Practices!! 🚀
 ---
