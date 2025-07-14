@@ -223,8 +223,27 @@ This acts as a lightweight orchestrator for our development and deployment workf
 - Run integration tests: `make integration_test`
 - Publish models: `make publish`
 
-🔗 [Read full guide on Makefiles and `make` →](/make_and_makefiles.md)
+🔗 [Read full guide on Makefiles and `make` →](./make_and_makefiles.md)
+
+---
+
+## ☁️ Infrastructure as a Code with Terraform
+
+To provision and manage cloud resources like Kinesis, S3, Lambda, ECR, and IAM, we use **Terraform** — an Infrastructure as Code (IaC) tool.
+
+Terraform enables us to declaratively define infrastructure using version-controlled code, allowing automated, consistent, and repeatable deployments across environments.
+
+🛠️ With just a few commands, we can:
+
+- Initialize Terraform: `terraform init`
+- Preview planned changes: `terraform plan`
+- Apply infrastructure updates: `terraform apply`
+- Tear down infrastructure: `terraform destroy`
+
+🔗 [Read full guide on Terraform and cloud infrastructure setup →](./infrastructure/README.md)
 
 
+---
 
 Happy Testing & Best-Practices!! 🚀
+---
