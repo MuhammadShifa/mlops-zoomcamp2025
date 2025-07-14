@@ -86,12 +86,12 @@ jobs:
                     PREDICTIONS_STREAM_NAME=$PREDICTIONS_STREAM_NAME, MODEL_BUCKET=$MODEL_BUCKET, RUN_ID=$RUN_ID \
                     }"
 
-          STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "eu-west-1" --query 'Configuration.LastUpdateStatus' --output text)
+          STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "ap-south-1" --query 'Configuration.LastUpdateStatus' --output text)
               while [[ "$STATE" == "InProgress" ]]
               do
                   echo "sleep 5sec ...."
                   sleep 5s
-                  STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "eu-west-1" --query 'Configuration.LastUpdateStatus' --output text)
+                  STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "ap-south-1" --query 'Configuration.LastUpdateStatus' --output text)
                   echo $STATE
               done
 
