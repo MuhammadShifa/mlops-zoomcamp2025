@@ -32,3 +32,7 @@ variable "docker_image_local_path" {
 variable "ecr_repo_name" {
   description = ""
 }
+
+variable "lambda_function_name" {
+  description = ""
+}
