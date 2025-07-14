@@ -219,6 +219,162 @@ ariable "model_bucket" {
 }
 
 ```
+---
+---
+
+### 🔹 Step 6: Add and Configure ECR with Image Dependency for Lambda
+
+#### 🚀 Why ECR is Important in MLOps
+
+ECR (Elastic Container Registry) is used to store Docker images in AWS.  
+In this pipeline, the **Lambda function** that will run ML predictions is based on a **custom Docker image** — and that image must be available **before** Lambda is created.
+
+Normally, Terraform isn't responsible for building and pushing Docker images — that's a job for a CI/CD pipeline. But because Lambda needs a valid `image_uri` at creation time, we're including this image provisioning step **within Terraform** just for this workshop.
+
+---
+
+### 🏗️ Real-World Context: Two-Repos Approach
+
+In professional teams, infrastructure and application code are usually separated into:
+
+- **Infrastructure repo**: stable components like VPCs, ECR, databases, etc.
+- **Service/App repo**: application-level infrastructure like Lambda or ECS tasks
+
+CI/CD pipelines then ensure that infrastructure is deployed before application services rely on them. For example:
+
+> 🔁 “If ECR has been provisioned by infra CI, then app CI can deploy Lambda using the image URI.”
+
+But for this **mono-repository workshop**, we're doing everything together — so we must **simulate those dependencies inside Terraform**.
+
+---
+
+## 🧱 ECR Module Breakdown
+
+We added a new module to:
+
+- Create an ECR repository
+- Build and push a Docker image
+- Output the `image_uri` for use in Lambda configuration
+
+---
+
+### 📦 Create ECR Repository
+
+**`modules/ecr/main.tf`**
+```hcl
+resource "aws_ecr_repository" "repo" {
+  name = var.ecr_repo_name
+}
+```
+
+This creates a named container registry in AWS.
+
+---
+
+### 🔄 Build and Push Docker Image
+
+Terraform is not designed to push images — but we use a workaround.
+
+#### ✅ `null_resource` with `local-exec`
+
+We use a **special Terraform resource** called `null_resource`, combined with `provisioner "local-exec"` to run custom shell commands *on your machine* during provisioning.
+
+```hcl
+resource "null_resource" "ecr_image" {
+  triggers = {
+    python_file = md5(file(var.lambda_function_local_path))
+    docker_file = md5(file(var.docker_image_local_path))
+  }
+
+  provisioner "local-exec" {
+    command = <<EOF
+      aws ecr get-login-password --region ${var.region} | docker login --username AWS --password-stdin ${var.account_id}.dkr.ecr.${var.region}.amazonaws.com
+      cd ../
+      docker build -t ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag} .
+      docker push ${aws_ecr_repository.repo.repository_url}:${var.ecr_image_tag}
+    EOF
+  }
+}
+```
+
+##### 🧠 What this does:
+
+1. **Authenticates** Docker with AWS ECR  
+2. **Builds** the image from your local Dockerfile and Lambda code  
+3. **Pushes** it to the ECR repo  
+
+It runs only when the Dockerfile or Lambda code changes (thanks to the `triggers` block).
+
+---
+
+### 📥 Fetch the Image with `data` Source
+
+After pushing the image, we use a `data` block to read the image metadata.  
+This ensures the Lambda function (created later) gets a valid URI.
+
+```hcl
+data "aws_ecr_image" "lambda_image" {
+  depends_on = [null_resource.ecr_image]
+  repository_name = var.ecr_repo_name
+  image_tag       = var.ecr_image_tag
+}
+```
+
+This guarantees the Lambda won’t configure until the Docker image exists.
+
+---
+
+### 📤 Output the Image URI
+
+To pass the image to the Lambda module later, expose it via:
+
+```hcl
+output "image_uri" {
+  value = "${aws_ecr_repository.repo.repository_url}:${data.aws_ecr_image.lambda_image.image_tag}"
+}
+```
+
+---
+
+## 🔗 Infrastructure Integration
+
+In `infrastructure/main.tf`, the ECR module is configured like this:
+
+```hcl
+module "ecr_image" {
+  source                     = "./modules/ecr"
+  ecr_repo_name              = "${var.ecr_repo_name}_${var.project_id}"
+  account_id                 = local.account_id
+  lambda_function_local_path = var.lambda_function_local_path
+  docker_image_local_path    = var.docker_image_local_path
+}
+```
+
+---
+
+## 🧪 Managing Environment Configurations with `.tfvars`
+
+As the number of variables grows, it becomes hard to pass them all on the CLI.  
+To solve this, we use **`.tfvars` files** for different environments (e.g., staging, production).
+
+Folder structure:
+```
+vars/
+├── stg.tfvars
+├── prod.tfvars
+```
+
+We can run Terraform with config varibles file:
+
+```bash
+terraform plan -var-file=vars/stg.tfvars
+terraform apply -var-file=vars/stg.tfvars
+```
+
+Terraform will skip any unchanged resources, only applying new updates (as previously streams, and s3 were created, so will not created again.)
+
+
+🎉 That completes the ECR setup. With this in place, you're ready to connect Lambda and build the full pipeline!
 
 ---
 
