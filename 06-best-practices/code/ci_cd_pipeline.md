@@ -87,12 +87,12 @@ Workflows must be defined inside the `.github/workflows/` directory at the root 
 
 In our project:
 
-- `ci-tests.yml` → Continuous Integration (CI) workflow
-- `cd-deploy.yml` → Continuous Deployment (CD) workflow
+- [`ci-tests.yml`](https://github.com/MuhammadShifa/mlops-zoomcamp2025/blob/main/.github/workflows/ci-tests.yml) → Continuous Integration (CI) workflow
+- [`cd-deploy.yml`](https://github.com/MuhammadShifa/mlops-zoomcamp2025/blob/main/.github/workflows/cd-deploy.yml) → Continuous Deployment (CD) workflow
 
 ---
 
-## 🚨 Workflow Trigger
+## 🚨 CI Integration Workflow Trigger
 
 We configure GitHub Actions to trigger the CI workflow when a **pull request is opened or updated** on the `main` branch, **only if** changes are made inside the MLOps code folder.
 
@@ -203,11 +203,184 @@ tf-plan:
 ✅ This setup ensures every pull request goes through automated testing and Terraform validation before merging to `main`, improving code quality and infrastructure stability.
 
 ---
-### ✅ Summary
+### 🚀 CD Deployment Pipeline for MLOps Zoomcamp
+the **Continuous Deployment (CD)** pipeline used in the MLOps Zoomcamp project. It automates Terraform deployment, Docker image build and push, and Lambda function update on merges to the `main` branch.
 
-By implementing CI/CD, we ensure that:
 
-- Code is always tested before being merged.
-- Infrastructure changes are validated before applying.
-- Deployments are automated, consistent, and reliable.
-- The entire pipeline is triggered automatically based on Git events (PRs and merges).
+### 🚀 CD Deployment Workflow Trigger
+
+We configure GitHub Actions to trigger the CD workflow **automatically on every push to the `main` branch**. This ensures that whenever code is merged into production, the latest infrastructure changes and model updates are deployed.
+
+```yaml
+name: CD-Deploy
+on:
+  push:
+    branches:
+      - 'main'
+#    paths:
+#      - '06-best-practices/code/**'
+```
+
+---
+
+### 🛠️ CD Job
+our `cd-deploy.yml` have only one job.
+- `build-push-deploy`: This job runs all deployment steps **sequentially** on `ubuntu-latest`:
+
+
+#### ✅ Step 1: Checkout & AWS Setup
+
+```yaml
+- name: Check out repo
+  uses: actions/checkout@v3
+
+- name: Configure AWS Credentials
+  uses: aws-actions/configure-aws-credentials@v1
+  with:
+    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-region: "ap-south-1"
+```
+
+---
+
+#### 🔧 Step 2: Terraform Init & Apply
+
+This defines and applies infrastructure with auto-approval:
+
+```yaml
+- uses: hashicorp/setup-terraform@v2
+  with:
+    terraform_wrapper: false
+
+- name: TF plan
+  id: tf-plan
+  working-directory: '06-best-practices/code/infrastructure'
+  run: terraform init -backend-config="key=mlops-zoomcamp-prod.tfstate" -reconfigure && terraform plan -var-file=vars/prod.tfvars
+
+- name: TF Apply
+  id: tf-apply
+  working-directory: '06-best-practices/code/infrastructure'
+  if: ${{ steps.tf-plan.outcome }} == 'success'
+  run: |
+    terraform apply -auto-approve -var-file=vars/prod.tfvars
+    echo "::set-output name=ecr_repo::$(terraform output ecr_repo | xargs)"
+    echo "::set-output name=predictions_stream_name::$(terraform output predictions_stream_name | xargs)"
+    echo "::set-output name=model_bucket::$(terraform output model_bucket | xargs)"
+    echo "::set-output name=lambda_function::$(terraform output lambda_function | xargs)"
+```
+
+---
+
+#### 📦 Step 3: Build & Push Docker Image
+
+```yaml
+- name: Login to Amazon ECR
+  id: login-ecr
+  uses: aws-actions/amazon-ecr-login@v1
+
+- name: Build, tag, and push image to Amazon ECR
+  id: build-image-step
+  working-directory: "06-best-practices/code"
+  env:
+    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    ECR_REPOSITORY: ${{ steps.tf-apply.outputs.ecr_repo }}
+    IMAGE_TAG: "latest"
+  run: |
+    docker build -t ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG} .
+    docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    echo "::set-output name=image_uri::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+```
+
+---
+
+#### 📥 Step 4: Copy Model Artifacts
+
+```yaml
+- name: Get model artifacts
+  id: get-model-artifacts
+  working-directory: "06-best-practices/code"
+  env:
+    MODEL_BUCKET_DEV: "mlflow-models-alexey"
+    MODEL_BUCKET_PROD: ${{ steps.tf-apply.outputs.model_bucket }}
+  run: |
+    export RUN_ID=$(aws s3api list-objects-v2 --bucket ${MODEL_BUCKET_DEV}       --query 'sort_by(Contents, &LastModified)[-1].Key' --output=text | cut -f2 -d/)
+    aws s3 sync s3://${MODEL_BUCKET_DEV} s3://${MODEL_BUCKET_PROD}
+    echo "::set-output name=run_id::${RUN_ID}"
+```
+
+---
+
+#### 🌀 Step 5: Update Lambda Function
+
+```yaml
+- name: Update Lambda
+  env:
+    LAMBDA_FUNCTION: ${{ steps.tf-apply.outputs.lambda_function }}
+    PREDICTIONS_STREAM_NAME: ${{ steps.tf-apply.outputs.predictions_stream_name }}
+    MODEL_BUCKET: ${{ steps.tf-apply.outputs.model_bucket }}
+    RUN_ID: ${{ steps.get-model-artifacts.outputs.run_id }}
+  run: |
+    variables="{PREDICTIONS_STREAM_NAME=$PREDICTIONS_STREAM_NAME, MODEL_BUCKET=$MODEL_BUCKET, RUN_ID=$RUN_ID}"
+    STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "ap-south-1" --query 'Configuration.LastUpdateStatus' --output text)
+    while [[ "$STATE" == "InProgress" ]]
+    do
+        echo "sleep 5sec ...."
+        sleep 5s
+        STATE=$(aws lambda get-function --function-name $LAMBDA_FUNCTION --region "ap-south-1" --query 'Configuration.LastUpdateStatus' --output text)
+        echo $STATE
+    done
+    aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION --environment "Variables=${variables}"
+```
+
+---
+
+### 🧾 Required Terraform Outputs
+
+We must define these outputs in our `main.tf` file at root directory of infrastructure:
+
+```hcl
+output "lambda_function" {
+  value = "${var.lambda_function_name}_${var.project_id}"
+}
+
+output "model_bucket" {
+  value = module.s3_bucket.name
+}
+
+output "predictions_stream_name" {
+  value = "${var.output_stream_name}-${var.project_id}"
+}
+
+output "ecr_repo" {
+  value = "${var.ecr_repo_name}_${var.project_id}"
+}
+```
+
+
+✅ This completes the Continuous Deployment process — automating infrastructure setup, Docker image management, and model delivery into production.
+
+---
+
+## ✅ Summary
+
+By implementing CI/CD with GitHub Actions in this MLOps Zoomcamp project, we ensure a robust and automated workflow:
+
+- 🧪 **CI (Continuous Integration)**: 
+  - Automatically runs on pull requests to the `main` branch.
+  - Executes unit tests, lints code, performs integration tests using Docker & Kinesis.
+  - Validates Terraform configuration without applying changes.
+
+- 🚀 **CD (Continuous Deployment)**: 
+  - Triggers on every push to the `main` branch.
+  - Applies Terraform infrastructure changes in AWS.
+  - Builds and pushes Docker images to Amazon ECR.
+  - Copies ML model artifacts and updates AWS Lambda function environment.
+
+Together, these pipelines ensure:
+- ✅ Code quality is enforced before merging.
+- ✅ Infrastructure is always validated and versioned.
+- ✅ Deployments are consistent, automated, and traceable.
+- ✅ Everything reacts seamlessly to GitHub events like PRs and merges.
+
+---
