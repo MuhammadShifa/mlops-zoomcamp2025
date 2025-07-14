@@ -3,8 +3,6 @@
 In this module, we explore one of the most critical skills in MLOps:  
 **Infrastructure as Code (IaC)** — using **Terraform**.
 
----
-
 ## 📘 What is Infrastructure as Code (IaC)?
 
 **Infrastructure as Code (IaC)** refers to the practice of provisioning and managing infrastructure through code instead of manual configuration.
@@ -13,7 +11,6 @@ In this module, we explore one of the most critical skills in MLOps:
 - Supports automation and reproducibility  
 - Makes infrastructure version-controlled and consistent
 
----
 
 ## 🛠️ What is Terraform?
 
@@ -52,7 +49,7 @@ In this module, we explore one of the most critical skills in MLOps:
 
 ---
 
-## 📁 Project Structure
+### 📁 Project Structure
 
 ```
 module6/
@@ -69,7 +66,7 @@ module6/
 
 ## 🧭 Step-by-Step Progress
 
-### 🔹 Step 1: Configure Remote State with S3
+## 🔹 Step 1: Configure Remote State with S3
 
 Terraform state is used to track resource changes. A remote S3 bucket is configured to store this state securely.
 
@@ -113,9 +110,51 @@ variable "aws_region" {
 
 ### 🔹 Step 3: Create a Terraform Module for Kinesis
 
-A reusable module for creating a Kinesis stream:
+#### 📡 Kinesis Stream Module: Detailed Explanation (`modules/kinesis/main.tf`)
+This configuration defines an **AWS Kinesis Data Stream**, which is used for handling streaming data in the MLOps architecture.
 
-**`infrastructure/main.tf`**
+```hcl
+resource "aws_kinesis_stream" "stream" {
+  name                 = var.stream_name
+  shard_count          = var.shard_count
+  retention_period     = var.retention_period
+  shard_level_metrics  = var.shard_level_metrics
+
+  tags = {
+    CreatedBy = var.tags
+  }
+}
+
+output "stream_arn" {
+  value = aws_kinesis_stream.stream.arn
+}
+```
+
+#### 🔍 Resource Parameters
+
+| Attribute              | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| `name`                 | Name of the Kinesis stream (passed as a variable)                           |
+| `shard_count`          | Number of shards for data processing parallelism and throughput             |
+| `retention_period`     | Number of hours to retain data in the stream                                |
+| `shard_level_metrics`  | Enables shard-level monitoring metrics, such as `IncomingBytes`             |
+| `tags`                 | Custom tags to categorize or track ownership (e.g., `CreatedBy = ml-team`) |
+
+#### 📤 Output Definition
+
+```hcl
+output "stream_arn" {
+  value = aws_kinesis_stream.stream.arn
+}
+```
+
+This block outputs the Amazon Resource Name (ARN) of the Kinesis stream, which can be used as a reference in other modules like Lambda configuration.
+
+This design allows the stream to be created dynamically and reused across environments through input variables. It supports both ingestion (input stream) and result forwarding (output stream) in the real-time inference pipeline.
+
+### 🔗 Infrastructure Integration
+
+In `infrastructure/main.tf`, the kinesis stream is configured like this:
 ```hcl
 # ride_events
 module "source_kinesis_stream" {
@@ -202,9 +241,49 @@ variable "output_stream_name" {
 
 ### 🔹 Step 5: Add S3 Module for Model Storage
 
-A new Terraform module was added to manage the **S3 bucket** that stores ML model artifacts.
+##### 🗂️ S3 Bucket Module: Detailed Explanation (`modules/s3/main.tf`)
 
-**`infrastructure/main.tf`**
+This module provisions an **Amazon S3 bucket**, which is used for storing ML model artifacts required by the Lambda function during inference.
+
+```hcl
+resource "aws_s3_bucket" "s3_bucket" {
+  bucket         = var.bucket_name
+  acl            = "private"
+  force_destroy  = true
+}
+
+output "name" {
+  value = aws_s3_bucket.s3_bucket.bucket
+}
+```
+
+#### 🔍 Resource Parameters
+
+| Attribute         | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `bucket`          | Name of the bucket, passed via variable `bucket_name`                      |
+| `acl`             | Access control for the bucket; `"private"` ensures no public access        |
+| `force_destroy`   | When set to `true`, allows Terraform to delete the bucket even if non-empty|
+
+- The bucket is typically used to store serialized ML models (`.pkl`, `.joblib`, etc.).
+- Setting `acl = "private"` ensures the bucket is secure by default.
+- `force_destroy = true` is useful in development and testing to avoid manual cleanup when destroying infrastructure.
+
+#### 📤 Output Definition
+
+```hcl
+output "name" {
+  value = aws_s3_bucket.s3_bucket.bucket
+}
+```
+
+This output returns the bucket name, which is passed to other modules (such as Lambda) to retrieve the model file during inference.
+
+By modularizing the S3 configuration, this setup supports multi-environment deployments (e.g., staging, production) with isolated and easily reproducible storage.
+
+### 🔗 Infrastructure Integration
+
+In `infrastructure/main.tf`, the S3 is configured like this:
 ```hcl
 module "s3_bucket" {
   source      = "./modules/s3"
@@ -220,9 +299,8 @@ ariable "model_bucket" {
 
 ```
 ---
----
 
-### 🔹 Step 6: Add and Configure ECR with Image Dependency for Lambda
+## 🔹 Step 6: Add and Configure ECR with Image Dependency for Lambda
 
 #### 🚀 Why ECR is Important in MLOps
 
@@ -230,8 +308,6 @@ ECR (Elastic Container Registry) is used to store Docker images in AWS.
 In this pipeline, the **Lambda function** that will run ML predictions is based on a **custom Docker image** — and that image must be available **before** Lambda is created.
 
 Normally, Terraform isn't responsible for building and pushing Docker images — that's a job for a CI/CD pipeline. But because Lambda needs a valid `image_uri` at creation time, we're including this image provisioning step **within Terraform** just for this workshop.
-
----
 
 ### 🏗️ Real-World Context: Two-Repos Approach
 
@@ -248,7 +324,7 @@ But for this **mono-repository workshop**, we're doing everything together — s
 
 ---
 
-## 🧱 ECR Module Breakdown
+### 🧱 ECR Module Breakdown
 
 We added a new module to:
 
@@ -256,9 +332,7 @@ We added a new module to:
 - Build and push a Docker image
 - Output the `image_uri` for use in Lambda configuration
 
----
-
-### 📦 Create ECR Repository
+#### 📦 Create ECR Repository
 
 **`modules/ecr/main.tf`**
 ```hcl
@@ -269,7 +343,6 @@ resource "aws_ecr_repository" "repo" {
 
 This creates a named container registry in AWS.
 
----
 
 ### 🔄 Build and Push Docker Image
 
@@ -297,7 +370,7 @@ resource "null_resource" "ecr_image" {
 }
 ```
 
-##### 🧠 What this does:
+#### 🧠 What this does:
 
 1. **Authenticates** Docker with AWS ECR  
 2. **Builds** the image from your local Dockerfile and Lambda code  
@@ -305,7 +378,6 @@ resource "null_resource" "ecr_image" {
 
 It runs only when the Dockerfile or Lambda code changes (thanks to the `triggers` block).
 
----
 
 ### 📥 Fetch the Image with `data` Source
 
@@ -322,9 +394,7 @@ data "aws_ecr_image" "lambda_image" {
 
 This guarantees the Lambda won’t configure until the Docker image exists.
 
----
-
-### 📤 Output the Image URI
+#### 📤 Output the Image URI
 
 To pass the image to the Lambda module later, expose it via:
 
@@ -334,9 +404,7 @@ output "image_uri" {
 }
 ```
 
----
-
-## 🔗 Infrastructure Integration
+### 🔗 Infrastructure Integration
 
 In `infrastructure/main.tf`, the ECR module is configured like this:
 
@@ -350,9 +418,7 @@ module "ecr_image" {
 }
 ```
 
----
-
-## 🧪 Managing Environment Configurations with `.tfvars`
+### 🧪 Managing Environment Configurations with `.tfvars`
 
 As the number of variables grows, it becomes hard to pass them all on the CLI.  
 To solve this, we use **`.tfvars` files** for different environments (e.g., staging, production).
@@ -373,31 +439,134 @@ terraform apply -var-file=vars/stg.tfvars
 
 Terraform will skip any unchanged resources, only applying new updates (as previously streams, and s3 were created, so will not created again.)
 
-
 🎉 That completes the ECR setup. With this in place, you're ready to connect Lambda and build the full pipeline!
 
 ---
 
+## 🔹 Step 7: Deploy the Lambda Function (Model Inference Service)
 
-## 📌 Summary of Concepts Learned
+The Lambda function is the **core inference engine** of this MLOps pipeline. It receives incoming events from the **Kinesis input stream**, loads the ML model from **S3**, and publishes predictions to the **output stream**.
 
-| Concept                 | Description                                                  |
-|------------------------|--------------------------------------------------------------|
-| Infrastructure as Code | Define and manage infra through code                        |
-| Terraform              | Declarative, multi-cloud infrastructure tool                 |
-| Backend                | Stores Terraform state remotely (S3 in this case)            |
-| Provider               | Specifies the cloud platform and region                      |
-| Module                 | Reusable and isolated Terraform logic                        |
-| Resource               | Any AWS entity defined and provisioned via Terraform         |
+
+### 🧠 Key Lambda Concepts
+
+When provisioning a Lambda function using Terraform, a few key inputs are required:
+
+| Field              | Purpose                                                                 |
+|-------------------|-------------------------------------------------------------------------|
+| `function_name`    | The unique name of your Lambda function                                |
+| `package_type`     | Set to `"Image"` for container-based Lambda functions                  |
+| `image_uri`        | The full URI of the Docker image stored in **ECR**                     |
+| `role`             | An **IAM role** that allows Lambda to access Kinesis, S3, Logs, etc.   |
+| `timeout`          | The max execution time in seconds (default is 3 sec, we use 180 sec)   |
+| `environment`      | Optional environment variables (e.g., stream name, S3 bucket name)     |
+
+---
+
+### 🧱 Lambda Resource
+
+**`modules/lambda/main.tf`**
+```hcl
+resource "aws_lambda_function" "kinesis_lambda" {
+  function_name = var.lambda_function_name
+  image_uri     = var.image_uri
+  package_type  = "Image"
+  role          = aws_iam_role.iam_lambda.arn
+
+  tracing_config {
+    mode = "Active"
+  }
+
+  environment {
+    variables = {
+      PREDICTIONS_STREAM_NAME = var.output_stream_name
+      MODEL_BUCKET            = var.model_bucket
+    }
+  }
+
+  timeout = 180
+}
+```
 
 ---
 
-## ✅ What's Next?
+### 🔐 IAM Role for Lambda
 
-- Add and configure AWS Lambda function to run ML inference  
-- Pull the model from S3 and Docker image from ECR  
-- Stream results into the new output Kinesis stream  
-- Set up CloudWatch for monitoring and debugging  
+Lambda interacts with multiple AWS services (Kinesis, ECR, S3, and CloudWatch).  
+To allow this securely, we need to define an **IAM role** and attached the necessary permissions via custom IAM policies.
 
+To keep this organized, the role and policies are defined in a separate file:  
+➡️ See [IAM_README.md](./iam_readme.md) for a full breakdown of the `iam.tf` file.
+
+**Highlights:**
+
+- Permission to **read/write to Kinesis** (input + output)
+- Permission to **read from S3** (model bucket)
+- Permission to **pull Docker image** from ECR
+- Permission to **log to CloudWatch Logs**
 
 ---
+
+### 🔗 Infrastructure Integration
+
+In `infrastructure/main.tf`, the lambda module is configured like this:
+
+```hcl
+module "lambda_function" {
+  source = "./modules/lambda"
+  image_uri = module.ecr_image.image_uri
+  lambda_function_name = "${var.lambda_function_name}_${var.project_id}"
+  model_bucket = module.s3_bucket.name
+  output_stream_name = "${var.output_stream_name}-${var.project_id}"
+  output_stream_arn = module.output_kinesis_stream.stream_arn
+  source_stream_name = "${var.source_stream_name}-${var.project_id}"
+  source_stream_arn = module.source_kinesis_stream.stream_arn
+}
+```
+This ties everything together:
+
+- Lambda uses the Docker image URI output by the ECR module
+- It reads the model from the S3 module
+- It sends results to the output Kinesis stream
+
+
+### ✅ Lambda Is Ready
+
+With the Lambda function deployed, your real-time ML pipeline is now able to:
+
+1. **Receive events** from the input stream  
+2. **Run predictions** using a pre-trained model stored in S3  
+3. **Publish output** to a second Kinesis stream  
+4. **Log execution details** in CloudWatch  
+
+🎉 You now have the foundation of an end-to-end MLOps pipeline deployed using Terraform!
+
+---
+
+<details>
+<summary>🧠 Core Concepts & Terminology</summary>
+
+| Concept                 | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| Infrastructure as Code | Manage and provision cloud resources through version-controlled code        |
+| Terraform              | Tool to define, deploy, and manage infrastructure across cloud providers     |
+| Backend                | Remote storage for Terraform state; ensures team collaboration (S3 used)     |
+| Provider               | Specifies the cloud environment (AWS in this case) and credentials setup     |
+| Module                 | Logical, reusable blocks of Terraform config (e.g., `kinesis`, `s3`, `lambda`)|
+| Resource               | Individual AWS service components like streams, buckets, or functions        |
+| Kinesis Streams        | Used for real-time event ingestion and publishing (input/output streams)     |
+| S3 Buckets             | Store ML model artifacts; integrated with Lambda for inference               |
+| ECR                    | Container registry to host Docker images used by Lambda                      |
+| Lambda Function        | Executes model inference on incoming stream events (Docker image-based)      |
+| Environment Variables  | Pass config values (like bucket names, stream names) into Lambda             |
+| IAM Role               | Grants Lambda permissions to access Kinesis, S3, CloudWatch, etc.            |
+| IAM Policy             | Set of fine-grained rules attached to roles to authorize resource access      |
+| Null Resource          | Used to trigger Docker image build/push based on local file changes          |
+| Data Source            | Terraform `data` block to fetch dynamic info like latest ECR image URI       |
+| CI/CD Integration      | Simulated inside Terraform to mimic image availability for Lambda deployment |
+| Mono Repository Style  | All infra and service code maintained in a single repository (vs split repos)|
+
+</details>
+
+---
+
