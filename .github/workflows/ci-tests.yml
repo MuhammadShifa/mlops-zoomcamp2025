@@ -2,7 +2,7 @@ name: CI-Tests
 on:
   pull_request:
     branches:
-      - 'develop'
+      - 'main'
     paths:
       - '06-best-practices/code/**'
 
