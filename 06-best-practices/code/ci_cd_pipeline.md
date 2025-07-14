@@ -114,7 +114,7 @@ We define AWS credentials and region using GitHub Secrets in the environment blo
 
 ```yaml
 env:
-  AWS_DEFAULT_REGION: 'eu-west-1'
+  AWS_DEFAULT_REGION: 'ap-south-1'
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 ```
