@@ -539,36 +539,10 @@ With the Lambda function deployed, your real-time ML pipeline is now able to:
 3. **Publish output** to a second Kinesis stream  
 4. **Log execution details** in CloudWatch  
 
-🎉 You now have the foundation of an end-to-end MLOps pipeline deployed using Terraform!
+🎉 WE now have the foundation of an end-to-end MLOps pipeline deployed using Terraform!
 
 ---
 
-<details>
-<summary>🧠 Core Concepts & Terminology</summary>
-
-| Concept                 | Description                                                                 |
-|------------------------|-----------------------------------------------------------------------------|
-| Infrastructure as Code | Manage and provision cloud resources through version-controlled code        |
-| Terraform              | Tool to define, deploy, and manage infrastructure across cloud providers     |
-| Backend                | Remote storage for Terraform state; ensures team collaboration (S3 used)     |
-| Provider               | Specifies the cloud environment (AWS in this case) and credentials setup     |
-| Module                 | Logical, reusable blocks of Terraform config (e.g., `kinesis`, `s3`, `lambda`)|
-| Resource               | Individual AWS service components like streams, buckets, or functions        |
-| Kinesis Streams        | Used for real-time event ingestion and publishing (input/output streams)     |
-| S3 Buckets             | Store ML model artifacts; integrated with Lambda for inference               |
-| ECR                    | Container registry to host Docker images used by Lambda                      |
-| Lambda Function        | Executes model inference on incoming stream events (Docker image-based)      |
-| Environment Variables  | Pass config values (like bucket names, stream names) into Lambda             |
-| IAM Role               | Grants Lambda permissions to access Kinesis, S3, CloudWatch, etc.            |
-| IAM Policy             | Set of fine-grained rules attached to roles to authorize resource access      |
-| Null Resource          | Used to trigger Docker image build/push based on local file changes          |
-| Data Source            | Terraform `data` block to fetch dynamic info like latest ECR image URI       |
-| CI/CD Integration      | Simulated inside Terraform to mimic image availability for Lambda deployment |
-| Mono Repository Style  | All infra and service code maintained in a single repository (vs split repos)|
-
-</details>
-
----
 ## 🚀 Terraform Demo and Closing Notes
 
 This demo illustrates the deployment of a complete real-time ML inference pipeline using **Terraform** on AWS - as shown in our initial architecture diagram.
@@ -636,6 +610,33 @@ aws kinesis put-record \
   --data fileb://<(echo -n '{"ride": {"PULocationID": 130, "DOLocationID": 205, "trip_distance": 3.66}, "ride_id": 156}')
 ```  
 Monitor the log in CLoudWatch 🚀🚀🚀
+---
+
+<details>
+<summary>🧠 Core Concepts & Terminology</summary>
+
+| Concept                 | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| Infrastructure as Code | Manage and provision cloud resources through version-controlled code        |
+| Terraform              | Tool to define, deploy, and manage infrastructure across cloud providers     |
+| Backend                | Remote storage for Terraform state; ensures team collaboration (S3 used)     |
+| Provider               | Specifies the cloud environment (AWS in this case) and credentials setup     |
+| Module                 | Logical, reusable blocks of Terraform config (e.g., `kinesis`, `s3`, `lambda`)|
+| Resource               | Individual AWS service components like streams, buckets, or functions        |
+| Kinesis Streams        | Used for real-time event ingestion and publishing (input/output streams)     |
+| S3 Buckets             | Store ML model artifacts; integrated with Lambda for inference               |
+| ECR                    | Container registry to host Docker images used by Lambda                      |
+| Lambda Function        | Executes model inference on incoming stream events (Docker image-based)      |
+| Environment Variables  | Pass config values (like bucket names, stream names) into Lambda             |
+| IAM Role               | Grants Lambda permissions to access Kinesis, S3, CloudWatch, etc.            |
+| IAM Policy             | Set of fine-grained rules attached to roles to authorize resource access      |
+| Null Resource          | Used to trigger Docker image build/push based on local file changes          |
+| Data Source            | Terraform `data` block to fetch dynamic info like latest ECR image URI       |
+| CI/CD Integration      | Simulated inside Terraform to mimic image availability for Lambda deployment |
+| Mono Repository Style  | All infra and service code maintained in a single repository (vs split repos)|
+
+</details>
+---
 
 
 
