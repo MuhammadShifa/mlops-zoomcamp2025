@@ -42,3 +42,14 @@ module "s3_bucket" {
   source = "./modules/s3"
   bucket_name = "${var.model_bucket}-${var.project_id}"
 }
+
+# image registry
+module "ecr_image" {
+   source = "./modules/ecr"
+   ecr_repo_name = "${var.ecr_repo_name}_${var.project_id}"
+   account_id = local.account_id
+   lambda_function_local_path = var.lambda_function_local_path
+   docker_image_local_path = var.docker_image_local_path
+}
+
+
