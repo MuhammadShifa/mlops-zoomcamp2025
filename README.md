@@ -74,9 +74,18 @@ This module introduced workflow orchestration tools and how to build production-
 - Homework Solution
 ---
 
+### [Module 6: Best Practices](06-best-practices)
+- Unit and integration testing
+- Linting, formatting, and pre-commit hooks
+- `make` and Makefiles
+- Infrastructure as Code (Terraform)
+- CI/CD with GitHub Actions
+- Homework solution
+
 ## 🚀 How to Use This Repository
 
-- Each module folder contains notebooks, datasets, and supporting files for that week's homework.  
+- Each module folder contains notebooks, datasets, and supporting files for that week's homework.
+- Seperate `README` files are provided for a specific topics or helps.
 - The root-level README will be updated as the course progresses to keep an overview of your learning journey.  
 - Use GitHub issues or discussions (if enabled) for any questions or collaboration.  
 
