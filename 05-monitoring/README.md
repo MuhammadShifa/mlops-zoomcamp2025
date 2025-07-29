@@ -61,7 +61,7 @@ Monitoring can be divided into several key areas:
 - **Bias and fairness:** Are predictions equitable across sensitive attributes?
 - **Outliers:** Identify anomalous inputs or predictions.
 - **Explainability:** Ensure model decisions can be interpreted; monitor changes in feature importance over time.
-
+  
 ---
 
 ### 🏛️ **Monitoring Architectures**
