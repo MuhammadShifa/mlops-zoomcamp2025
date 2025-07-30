@@ -23,7 +23,7 @@ The unit testing work is based on the [**streaming**](../04-deployment/streaming
 │   └── test_docker.py
 │   ├── Dockerfile
 
-├── test/                    # Unit tests for the above code
+├── tests/                    # Unit tests for the above code
 │   └── model_test.py
 └── README.md
 ```
@@ -111,7 +111,7 @@ pipenv install --dev pytest
 In your project root, run:
 
 ```bash
-pipenv run pytest test
+pipenv run pytest tests
 ```
 
 ---
