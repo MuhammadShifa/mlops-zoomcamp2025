@@ -18,8 +18,8 @@ The unit testing work is based on the [**streaming**](../04-deployment/streaming
 ```bash
 .
 ├── code/                    # Source code copied from streaming module
-│   ├── lambda_function.py.py
-│   ├── model.py.py
+│   ├── lambda_function.py
+│   ├── model.py
 │   └── test_docker.py
 │   ├── Dockerfile
 
