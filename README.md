@@ -82,6 +82,10 @@ This module introduced workflow orchestration tools and how to build production-
 - CI/CD with GitHub Actions
 - Homework solution
 
+### [Captsone Project](https://github.com/MuhammadShifa/store-sales-forecasting-mlops.git)
+This is an end to end MLOps Project for store sales forecasting
+
+
 ## 🚀 How to Use This Repository
 
 - Each module folder contains notebooks, datasets, and supporting files for that week's homework.
