@@ -26,7 +26,7 @@ To get the most out of this course, it is recommended that you have prior experi
 
 ## 📂 Modules Overview
 
-### [Module 1: Introduction](./01-intro)
+### [Module 1: Introduction](./01-introduction)
 
 - What is MLOps?  
 - MLOps maturity model  
@@ -74,7 +74,7 @@ This module introduced workflow orchestration tools and how to build production-
 - Homework Solution
 ---
 
-### [Module 6: Best Practices](06-best-practices)
+### [Module 6: Best Practices](./06-best-practices/code/)
 - Unit and integration testing
 - Linting, formatting, and pre-commit hooks
 - `make` and Makefiles
